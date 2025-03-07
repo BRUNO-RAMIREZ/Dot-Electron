@@ -13,16 +13,18 @@
   .dt-floating-logo {
     align-items: center;
     border-radius: 6px;
+    cursor: pointer;
     display: flex;
-    height: 90%;
+    height: 80%;
     justify-content: center;
     overflow: hidden;
-    width: 90%;
+    width: 80%;
     -webkit-app-region: no-drag;
 
     img {
       height: 100%;
       object-fit: contain;
+      user-select: none;
       width: 100%;
     }
   }

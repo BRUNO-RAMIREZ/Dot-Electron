@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {DtElectronService} from '../../../services/dt-electron.service';
+import {DtPayload} from '../../../interfaces/dt-payload.interface';
+import {DtAction} from '../../../enums/dt-action.enum';
 
 @Component({
   selector: 'dt-floating-button',
@@ -16,7 +18,10 @@ export class DtFloatingButtonComponent implements OnInit {
   }
 
   public listenDButtonClick(): void {
-    console.info('look');
-    this._dtElectronService.sendMessage('mensaje','!Hola desde angular')
+    const payload: DtPayload = {
+      width: 610,
+      height: -1
+    };
+    this._dtElectronService.sendMessage(DtAction.CHANGE_DIMENSIONS, payload);
   }
 }

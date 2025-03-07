@@ -44,19 +44,21 @@ function alignWindowToRightEdge() {
   mainWindow.setBounds({x: newX, y: newY, width, height});
 }
 
-function toggleWindowSize(isExpanded) {
+function setWindowSize(width, height) {
   if (!mainWindow) return;
 
-  const {width: screenWidth, height: screenHeight, x: screenX, y: screenY} = screen.getPrimaryDisplay().workArea;
-  const newSize = isExpanded ? {width: 250, height: 180} : {width: 60, height: 60};
+  const { width: screenWidth, height: screenHeight, x: screenX, y: screenY } = screen.getPrimaryDisplay().workArea;
+  let { x, y, width: currentWidth, height: currentHeight } = mainWindow.getBounds();
 
-  let {y} = mainWindow.getBounds();
+  width = width < 0 ? screenWidth : width ?? currentWidth;
+  height = height < 0 ? screenHeight : height ?? currentHeight;
 
-  const newX = screenX + screenWidth - newSize.width;
-  const newY = Math.max(Math.min(y, screenY + screenHeight - newSize.height), screenY);
+  const newX = screenX + screenWidth - width;
+  const newY = Math.max(Math.min(y, screenY + screenHeight - height), screenY);
 
-  mainWindow.setBounds({x: newX, y: newY, width: newSize.width, height: newSize.height});
+  mainWindow.setBounds({ x: newX, y: newY, width, height });
   alignWindowToRightEdge();
 }
 
-module.exports = {createMainWindow, toggleWindowSize};
+
+module.exports = { createMainWindow, setWindowSize };
