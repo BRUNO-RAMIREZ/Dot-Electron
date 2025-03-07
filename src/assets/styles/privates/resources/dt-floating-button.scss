@@ -1,0 +1,29 @@
+.dt-floating-button-container {
+  align-items: center;
+  background-color: #000000;
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  padding: 5px;
+  -webkit-app-region: drag;
+
+  width: 40px;
+
+  .dt-floating-logo {
+    align-items: center;
+    border-radius: 6px;
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    overflow: hidden;
+    width: 90%;
+    -webkit-app-region: no-drag;
+
+    img {
+      height: 100%;
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+}
