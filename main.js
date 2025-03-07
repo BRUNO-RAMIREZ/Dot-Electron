@@ -76,8 +76,11 @@ function setFullScreen(event, isFullScreen) {
 function onTakeScreenshot() {
   ipcMain.on('takeScreenshot', async (event) => {
     destroySecondView();
+    mainWindow && mainWindow.hide();
     const screenshotBuffer = await buildScreenshotBuffer();
-    mainWindow && mainWindow.webContents.send('renderScreenshot', screenshotBuffer);
+    if (!mainWindow) return;
+    mainWindow.show();
+    mainWindow.webContents.send('renderScreenshot', screenshotBuffer);
   });
 }
 
