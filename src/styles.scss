@@ -1,5 +1,18 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
 body {
-  &:hover {
-    background-color: blue;
-  }
+  width: 100vw;
+  height: 100vh;
+  -webkit-app-region: drag;
+  background-color: transparent;
+  user-select: none;
 }

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Screenshot</title>
+  <base href="./">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .dt-screenshot-container {
+      background-color: rgba(0, 0, 0, 0.2);
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .dt-corner {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      z-index: 1;
+      --spacing: 24px;
+    }
+
+    .dt-corner::before,
+    .dt-corner::after {
+      content: '';
+      position: absolute;
+      background-color: rgba(93, 107, 222, 1);
+      width: 60px;
+      height: 10px;
+      border-radius: 10px;
+    }
+
+    .dt-corner::after {
+      width: 10px;
+      height: 60px;
+    }
+
+    .dt-top-left {
+      top: var(--spacing);
+      left: var(--spacing);
+    }
+
+    .dt-top-right {
+      top: var(--spacing);
+      right: var(--spacing);
+    }
+
+    .dt-bottom-left {
+      bottom: var(--spacing);
+      left: var(--spacing);
+    }
+
+    .dt-bottom-right {
+      bottom: var(--spacing);
+      right: var(--spacing);
+    }
+
+    .dt-corner::before, .dt-corner::after {
+      top: 0;
+      left: 0;
+    }
+
+    .dt-top-right::before, .dt-top-right::after {
+      right: 0;
+      left: auto;
+    }
+
+    .dt-bottom-left::before, .dt-bottom-left::after {
+      bottom: 0;
+      top: auto;
+    }
+
+    .dt-bottom-right::before, .dt-bottom-right::after {
+      bottom: 0;
+      right: 0;
+      top: auto;
+      left: auto;
+    }
+
+    .dt-screenshot-button {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: white;
+      border: 2px solid #ccc;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .dt-screenshot-transparent-container {
+      background-color: transparent;
+      bottom: 0;
+      height: 100px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+    }
+
+    .dt-screenshot-transparent-container:hover {
+      opacity: 1;
+    }
+
+    .dt-screenshot-transparent-container:hover + .dt-screenshot-container {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+<div class="dt-screenshot-transparent-container">
+  <button class="dt-screenshot-button">📷</button>
+</div>
+
+<section class="dt-screenshot-container">
+  <div class="dt-corner dt-top-left"></div>
+  <div class="dt-corner dt-top-right"></div>
+  <div class="dt-corner dt-bottom-left"></div>
+  <div class="dt-corner dt-bottom-right"></div>
+</section>
+
+<script>
+  document.addEventListener('mousemove', (e) => {
+    const isScreenshotButton = e.target.classList.contains('dt-screenshot-button');
+    window.electronAPI.setIgnoreMouseEvents(!isScreenshotButton);
+  });
+
+  document.addEventListener('click', (e) => {
+    const isScreenshotButton = e.target.classList.contains('dt-screenshot-button');
+    if (isScreenshotButton) {
+      const audio = new Audio('assets/sound/dt-screenshot-sound.mp3');
+      audio.play().catch(err => console.warn('No se pudo reproducir el sonido:', err));
+      window.electronAPI.takeScreenshot();
+    }
+  });
+</script>
+</body>
+</html>
