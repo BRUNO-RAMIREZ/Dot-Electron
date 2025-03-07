@@ -18,7 +18,7 @@ export const environment = {
 export const dotServer = {
   lbUri: 'https://dev.platform.ss.set.digitalharbor.us'
 };
-export const piSsoUrl: string = `${dotServer.lbUri}/test/pi/pi-sso`;
+export const piSsoUrl: string = `${dotServer.lbUri}/pi/pi-sso`;
 
 export const defaultTenant = 'dtde';
 
@@ -164,3 +164,4 @@ export const SOCIAL_SERVICES_PATH = {
   IDENTITY_DMS_DOCUMENT: `${BASE_URL}/set/socialServices/identity/dmsDocument/`,
   DOODLE_DOCUMENTS: `${BASE_URL}/doodle/documents`,
 };
+

@@ -1,5 +1,5 @@
-<article class="toolbar-container">
-  <section class="toolbar-content">
+<article class="dt-home-container">
+  <section class="toolbar-container">
     <button class="toolbar-button"
             title="screenshot"
             (click)="initScreenshot()">
@@ -18,8 +18,12 @@
       <img src="assets/images/crop.svg" alt="Screenshot">
     </button>
   </section>
+
+  <ng-container *ngIf="documentDetail">
+    <dt-modal-viewer class="dt-viewer-main-container"
+                     [documentId]="documentDetail.documentId"
+                     [versionId]="documentDetail.versionId"
+                     (closeEmitter)="closeViewer()">
+    </dt-modal-viewer>
+  </ng-container>
 </article>
-
-<div class="">
-
-</div>

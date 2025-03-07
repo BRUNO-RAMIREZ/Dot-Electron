@@ -31,20 +31,110 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/screenshot.html"
+              "src/screenshot.html",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@doodle/viewer/assets/",
+                "output": "./assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@doodle/annotations/assets/",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@sdv/sdv-components/assets/images",
+                "output": "./assets/images"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@set-social-services/comment-view/images/",
+                "output": "./assets/comment-view/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@set-social-services/comment-view/sounds/",
+                "output": "./assets/comment-view/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@set-social-services/micro-app-view/images/",
+                "output": "./assets/micro-app-view/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@set/action-tags-custom-components/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@set/action-tags-ng-plugin/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@set/reference-tags-ng-plugin/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@set/reference-tags-custom-components/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@set/social-tags-commons/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "*",
+                "input": "./node_modules/@set/topic-tags-ng-plugin/assets/images",
+                "output": "assets/images/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@set/user-tag-ng-plugin/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@doodle/thumbnail/dist/assets/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@doodle/annotations/style.css",
+              "node_modules/@doodle/viewer/assets/styles/doodle.viewer.min.css",
+              "node_modules/@doodle/thumbnail-js/style.css",
+              "@ctrl/ngx-emoji-mart/picker.css",
+              "node_modules/@sdv/sdv-components/assets/styles/sdv.components.min.css",
+              "node_modules/@set-social-services/common-style/common.style.min.css",
+              "node_modules/@set-social-services/common-component/styles/common.component.min.css",
+              "node_modules/@set-social-services/micro-app-view/styles/micro.app.view.min.css",
+              "node_modules/@set-social-services/comment-view/styles/comment.view.min.css",
+              "node_modules/@set-social-services/comments-plugin/styles/comments.plugin.min.css",
+              "node_modules/@set/topic-tags-ng-plugin/styles/topic-tags.css",
+              "node_modules/@set/user-tag-ng-plugin/styles/user-tags-styles.scss",
+              "node_modules/@set/ati-tags-ng-plugin/assets/styles/ati-tag-styles.scss",
+              "node_modules/@set/action-tags-ng-plugin/assets/styles/action-tag-styles.scss",
+              "node_modules/@set/reference-tags-ng-plugin/assets/styles/reference-tag-styles.scss",
+              "node_modules/@set/social-tags-commons/assets/styles/social-tags-common-styles.scss",
+              "node_modules/@set/web-tags-ng-plugin/styles/web-tags-styles.scss",
+              "node_modules/@set/reference-tags-custom-components/assets/styles/references-tags-custom-styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@doodle/viewer/assets/js/dd-font-family-kit.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "50mb",
+                  "maximumError": "70mb"
                 },
                 {
                   "type": "anyComponentStyle",

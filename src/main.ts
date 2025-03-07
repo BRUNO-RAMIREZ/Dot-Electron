@@ -16,9 +16,10 @@ declare global {
     electronAPI: {
       initScreenshot: () => void;
       takeScreenshot: () => void;
-      onRenderScreenshot: (callback: (base64Image: string) => void) => void;
+      onRenderScreenshot: (callback: (buffer: ArrayBufferLike) => void) => void;
       setIgnoreMouseEvents: (ignore: boolean) => void;
       setFullScreen: (isFullScreen: boolean) => void;
+      removeRenderScreenshotListener: () => void;
     };
   }
 }

@@ -11,16 +11,19 @@ import {UserTagsConfig} from '@set/user-tag-ng-plugin/lib/config/user-tags.confi
 import {DtThumbnailWrapperComponent} from '../app/components/dt-thumbnail-wrapper/dt-thumbnail-wrapper.component';
 import {DtSpellcheckUtility} from '../app/utilis/dt-spellcheck.utility';
 
+/**
+ * @author Ivan Misericordia
+ */
 export const environment = {
   production: false
 };
 
 export const dotServer = {
-  lbUri: 'https://dev.platform.ss.set.digitalharbor.us'
+  lbUri: 'https://uat.platform.set.digitalharbor.us'
 };
-export const piSsoUrl: string = `${dotServer.lbUri}/test/pi/pi-sso`;
+export const piSsoUrl: string = `${dotServer.lbUri}/fusion/pi-sso`;
 
-export const defaultTenant = 'dtde';
+export const defaultTenant = 'dota';
 
 export const SOCIAL_TEXT_BASE_PATH: string = 'https://social-text.digitalharbor.us';
 
@@ -31,7 +34,6 @@ export const websocketConfig: WebsocketConfig = {
 };
 
 export const ddViewerConfig: ViewerViewConfig = {
-  doodleStandAlonePath: 'https://dev.ss.set.digitalharbor.us/dot-app',
   socialTextPath: SOCIAL_TEXT_BASE_PATH
 };
 
@@ -158,9 +160,9 @@ export const socialTextConfig: SocialTextConfig = {
   }
 };
 
-export const BASE_URL = 'https://dev.platform.ss.set.digitalharbor.us';
+export const BASE_URL = 'https://uat.platform.set.digitalharbor.us';
 
 export const SOCIAL_SERVICES_PATH = {
-  IDENTITY_DMS_DOCUMENT: `${BASE_URL}/set/socialServices/identity/dmsDocument/`,
-  DOODLE_DOCUMENTS: `${BASE_URL}/doodle/documents`,
+  IDENTITY_DMS_DOCUMENT: `${BASE_URL}/v2/set/socialServices/identity/dmsDocument/`,
+  DOODLE_DOCUMENTS: `${BASE_URL}/v2/doodle/documents`,
 };

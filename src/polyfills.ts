@@ -54,12 +54,15 @@
  *
  */
 
+import {socialTextBootstrap} from '@digital-harbor/social-text';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js';  // Included with Angular CLI.
+import 'zone.js'; // Included with Angular CLI.
 
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+(window as any).global = window;
+socialTextBootstrap(undefined, true);

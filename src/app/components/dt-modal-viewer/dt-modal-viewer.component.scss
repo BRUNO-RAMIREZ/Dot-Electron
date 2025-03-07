@@ -1,0 +1,21 @@
+.dt-modal-container {
+  background: var(--dt-closed-button-background);
+  height: 100%;
+  position: absolute;
+  width: calc(100% - 40px); //TODO: Change this style to 100%
+  -webkit-app-region: no-drag;
+}
+
+.dt-modal-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dt-comment-clipboard-container {
+  display: flex;
+  left: 0;
+  position: absolute;
+  z-index: 100;
+}
+

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Injector} from '@angular/core';
+import {DtLocalLoginTest} from './utilis/dt-local-login-test';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dot-electron';
+  private _localLoginTest: DtLocalLoginTest | undefined;
+
+  constructor(private _injector: Injector) {
+    this._localLoginTest = new DtLocalLoginTest(this._injector);
+    this._localLoginTest.initSession();
+  }
 }

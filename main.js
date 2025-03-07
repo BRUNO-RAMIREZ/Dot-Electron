@@ -9,6 +9,8 @@ function initialize() {
   buildMainWindow();
   onInitScreenshot();
   onFullScreen();
+  onIgnoreMouseEvents();
+  onTakeScreenshot();
 }
 
 function buildMainWindow() {
@@ -29,7 +31,10 @@ function buildMainWindow() {
 }
 
 function onInitScreenshot() {
-  ipcMain.on('initScreenshot', buildSecondWindow);
+  ipcMain.on('initScreenshot', () => {
+    destroySecondView();
+    buildSecondWindow();
+  });
 }
 
 function buildSecondWindow() {
@@ -46,8 +51,6 @@ function buildSecondWindow() {
 
   secondWindow.loadURL(`file://${__dirname}/dist/screenshot.html`);
   setIgnoreMouseEvents(undefined, true);
-  onIgnoreMouseEvents();
-  onTakeScreenshot();
 }
 
 function onIgnoreMouseEvents() {
@@ -55,7 +58,7 @@ function onIgnoreMouseEvents() {
 }
 
 function setIgnoreMouseEvents(event, ignore) {
-  secondWindow.setIgnoreMouseEvents(ignore, {forward: true});
+  secondWindow && secondWindow.setIgnoreMouseEvents(ignore, {forward: true});
 }
 
 function onFullScreen() {
@@ -65,20 +68,22 @@ function onFullScreen() {
 function setFullScreen(event, isFullScreen) {
   if (!mainWindow) return;
 
-  isFullScreen && mainWindow.setPosition({x: 0, y: 0});
+  isFullScreen && mainWindow.setPosition(0, 0);
+  mainWindow.setMovable(!isFullScreen);
   mainWindow.setFullScreen(isFullScreen);
 }
 
 function onTakeScreenshot() {
   ipcMain.on('takeScreenshot', async (event) => {
-    const screenshotBase64 = await buildScreenshotBase64();
-    mainWindow && mainWindow.webContents.send('renderScreenshot', screenshotBase64);
+    destroySecondView();
+    const screenshotBuffer = await buildScreenshotBuffer();
+    mainWindow && mainWindow.webContents.send('renderScreenshot', screenshotBuffer);
   });
 }
 
-async function buildScreenshotBase64() {
+async function buildScreenshotBuffer() {
   const screenshot = await takeScreenshot();
-  return screenshot.toDataURL();
+  return screenshot.toPNG().buffer;
 }
 
 async function takeScreenshot() {
@@ -94,4 +99,10 @@ async function takeScreenshot() {
   const nativeImage = primarySource.thumbnail;
 
   return nativeImage;
+}
+
+function destroySecondView() {
+  if (!secondWindow) return;
+  secondWindow.destroy();
+  secondWindow = undefined;
 }

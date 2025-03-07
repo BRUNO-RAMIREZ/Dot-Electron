@@ -161,6 +161,7 @@
     if (isScreenshotButton) {
       const audio = new Audio('assets/sound/dt-screenshot-sound.mp3');
       audio.play().catch(err => console.warn('No se pudo reproducir el sonido:', err));
+      console.count('Take screenshot event dispatch')
       window.electronAPI.takeScreenshot();
     }
   });
