@@ -29,6 +29,7 @@ function createMainWindow() {
   mainWindow.on('resize', alignWindowToRightEdge);
   mainWindow.on('closed', () => (mainWindow = null));
 
+  mainWindow.setAlwaysOnTop(true, 'screen-saver');
   return mainWindow;
 }
 

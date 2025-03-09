@@ -3,7 +3,11 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {DdHttpConfig} from '@doodle/http-client';
 import {defineCustomElements} from '@doodle/thumbnail/loader';
-import {CommentReferenceTagsContainerFacade} from '@set-social-services/comment-core';
+import {
+  CommentReferenceTagsContainerFacade,
+  CommentWallBulletinsContainerFacade,
+  CommentWallNotificationBulletinContainerFacade
+} from '@set-social-services/comment-core';
 import {SECURITY_CONFIG} from '@set-social-services/common-http';
 import {WEBSOCKET_CONFIG, WEBSOCKET_PATH} from '@set/commons-ws';
 import {ReferenceDocumentsFacade, ReferenceTagsFacade} from '@set/social-tags-core/src';
@@ -23,6 +27,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {SecureModule} from './secure/secure.module';
 import {DtCommentsGetDataFacade} from './facades/dt-comments-get-data.facade';
 import {DtWallThumbnailModule} from './plugins/dt-wall-thumbnail/dt-wall-thumbnail.module';
+import {WallBulletinsContainerFacade, WallNotificationBulletinContainerFacade} from '@set-social-services/wall-core';
+import {WallNotificationsModule} from '@set-social-services/wall';
 
 new SetTagsConfig(tagsConfig as TagsConfig);
 DdHttpConfig.getSession().setTenantId(defaultTenant);
@@ -43,6 +49,7 @@ DdHttpConfig.getSession().setTenantId(defaultTenant);
     ...piModules,
     ...ssModules,
     HttpClientModule,
+    WallNotificationsModule,
   ],
   providers: [
     DtTagConfigService,
@@ -64,6 +71,14 @@ DdHttpConfig.getSession().setTenantId(defaultTenant);
     {
       provide: SECURITY_CONFIG,
       useValue: securityConfig
+    },
+    {
+      provide: CommentWallBulletinsContainerFacade,
+      useExisting: WallBulletinsContainerFacade
+    },
+    {
+      provide: CommentWallNotificationBulletinContainerFacade,
+      useExisting: WallNotificationBulletinContainerFacade
     },
     {
       provide: CommentReferenceTagsContainerFacade,

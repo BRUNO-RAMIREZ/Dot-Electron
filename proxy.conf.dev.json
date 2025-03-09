@@ -35,6 +35,38 @@
     "logLevel": "debug",
     "changeOrigin": false
   },
+  "/social-profile-service/memory/lastUsed/*/typeEvent/UPLOAD_DOCUMENT": {
+    "target": "http://10.9.1.8:8080",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/social-profile-service/memory/lastUsed/*/typeEvent/VIEW_CASE_EVENT": {
+    "target": "http://10.9.1.35:8080",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/dms/*": {
+    "target": "http://10.10.0.121:8080",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false
+  },
+  "/fusion-tags": {
+    "target": "http://10.9.1.8:8080/tag-service/",
+    "secure": false,
+    "pathRewrite": {
+      "^/fusion-tags": ""
+    },
+    "logLevel": "info"
+  },
+  "/security": {
+    "target": "http://10.9.1.135:32931",
+    "secure": false,
+    "pathRewrite": {
+      "^/security": ""
+    },
+    "logLevel": "debug"
+  },
   "/social-profile-service/*": {
     "target": "https://dev.platform.ss.set.digitalharbor.us/pi",
     "secure": false,
