@@ -14,16 +14,19 @@ import {CmtMessageWallComponent, CmtNotificationWallComponent} from '@set-social
 import {WallConfig} from '@set-social-services/wall-api';
 import {DtCommentsGetDataFacade} from '../app/facades/dt-comments-get-data.facade';
 
+/**
+ * @author Ivan Misericordia
+ */
 export const environment = {
   production: false
 };
 
 export const dotServer = {
-  lbUri: 'https://dev.platform.ss.set.digitalharbor.us'
+  lbUri: 'https://qa.platform.ss.set.digitalharbor.us'
 };
-export const piSsoUrl: string = `${dotServer.lbUri}/test/pi/pi-sso`;
+export const piSsoUrl: string = `${dotServer.lbUri}/pi/pi-sso`;
 
-export const defaultTenant = 'ysit';
+export const defaultTenant = 'dotq';
 
 export const SOCIAL_TEXT_BASE_PATH: string = 'https://social-text.digitalharbor.us';
 
@@ -34,6 +37,7 @@ export const websocketConfig: WebsocketConfig = {
 };
 
 export const ddViewerConfig: ViewerViewConfig = {
+  doodleStandAlonePath: 'https://qa.ss.set.digitalharbor.us/dot-app',
   socialTextPath: SOCIAL_TEXT_BASE_PATH
 };
 
@@ -160,7 +164,7 @@ export const socialTextConfig: SocialTextConfig = {
   }
 };
 
-export const BASE_URL = 'https://dev.platform.ss.set.digitalharbor.us';
+export const BASE_URL = 'https://qa.platform.ss.set.digitalharbor.us';
 
 export const SOCIAL_SERVICES_PATH = {
   IDENTITY_DMS_DOCUMENT: `${BASE_URL}/set/socialServices/identity/dmsDocument/`,

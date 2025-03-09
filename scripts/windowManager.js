@@ -53,12 +53,11 @@ function setWindowSize(width, height) {
   width = width < 0 ? screenWidth : width ?? currentWidth;
   height = height < 0 ? screenHeight : height ?? currentHeight;
 
+  // Alinear la ventana al borde derecho
   const newX = screenX + screenWidth - width;
   const newY = Math.max(Math.min(y, screenY + screenHeight - height), screenY);
 
   mainWindow.setBounds({ x: newX, y: newY, width, height });
-  alignWindowToRightEdge();
 }
-
 
 module.exports = { createMainWindow, setWindowSize };
