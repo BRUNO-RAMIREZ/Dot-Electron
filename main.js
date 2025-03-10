@@ -69,7 +69,6 @@ function onFullScreen() {
 function setFullScreen(event, isFullScreen) {
   if (!mainWindow) return;
 
-  isFullScreen && mainWindow.setPosition(0, 0);
   mainWindow.setMovable(!isFullScreen);
   mainWindow.setFullScreen(isFullScreen);
 }
