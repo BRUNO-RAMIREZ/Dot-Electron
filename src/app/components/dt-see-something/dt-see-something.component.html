@@ -1,0 +1,14 @@
+<article class="dt-see-something-container"
+         #projectContainer>
+  <ng-container *ngIf="imageSafeUrl">
+    <img class="dt-see-something-screenshot"
+         alt="screenshot"
+         [src]="imageSafeUrl"
+         (load)="loadDoodleBoard(imageElement)"
+         #imageElement>
+  </ng-container>
+</article>
+
+<!-- TODO: This is a work around to work with decompress -->
+<div contenteditable="false"
+     social-text="true"></div>

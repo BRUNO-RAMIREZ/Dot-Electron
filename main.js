@@ -7,10 +7,11 @@ app.whenReady().then(initialize);
 
 function initialize() {
   buildMainWindow();
-  onInitScreenshot();
+  onBuildBrowserWindowFormRoute();
   onFullScreen();
   onIgnoreMouseEvents();
   onTakeScreenshot();
+  initSeeSomething();
 }
 
 function buildMainWindow() {
@@ -28,16 +29,17 @@ function buildMainWindow() {
   });
 
   mainWindow.loadURL('http://localhost:4200');
+  // mainWindow.loadURL(`file://${__dirname}/dist/index.html`);
 }
 
-function onInitScreenshot() {
-  ipcMain.on('initScreenshot', () => {
+function onBuildBrowserWindowFormRoute() {
+  ipcMain.on('buildBrowserWindowFormRoute', (event, route) => {
     destroySecondView();
-    buildSecondWindow();
+    buildBrowserWindow(route);
   });
 }
 
-function buildSecondWindow() {
+function buildBrowserWindow(route) {
   secondWindow = new BrowserWindow({
     fullscreen: true,
     alwaysOnTop: true,
@@ -49,8 +51,7 @@ function buildSecondWindow() {
     },
   });
 
-  secondWindow.loadURL(`file://${__dirname}/dist/screenshot.html`);
-  setIgnoreMouseEvents(undefined, true);
+  secondWindow.loadURL(`http://localhost:4200/secure/full-screen/${route}`);
 }
 
 function onIgnoreMouseEvents() {
@@ -74,7 +75,7 @@ function setFullScreen(event, isFullScreen) {
 }
 
 function onTakeScreenshot() {
-  ipcMain.on('takeScreenshot', async (event) => {
+  ipcMain.on('initTakeScreenshot', async (event) => {
     destroySecondView();
     mainWindow && mainWindow.hide();
     const screenshotBuffer = await buildScreenshotBuffer();
@@ -108,4 +109,11 @@ function destroySecondView() {
   if (!secondWindow) return;
   secondWindow.destroy();
   secondWindow = undefined;
+}
+
+function initSeeSomething() {
+  ipcMain.handle('initSeeSomething', async () => {
+    const screenshotBuffer = await buildScreenshotBuffer();
+    return screenshotBuffer;
+  });
 }

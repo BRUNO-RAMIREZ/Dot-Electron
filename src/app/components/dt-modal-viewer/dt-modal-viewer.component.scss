@@ -1,9 +1,17 @@
-.dt-modal-container {
-  -webkit-app-region: no-drag;
-  background: var(--dt-closed-button-background);
+.dt-modal-view-expand-host {
+  width: 100%;
   height: 100%;
-  position: absolute;
-  width: calc(100% - 40px); //TODO: Change this style to 100%
+}
+
+.dt-modal-view-host {
+  width: 90%;
+  height: 90%;
+}
+
+.dt-modal-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .dt-modal-flex {
@@ -11,11 +19,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.dt-comment-clipboard-container {
-  display: flex;
-  left: 0;
-  position: absolute;
-  z-index: 100;
-}
-

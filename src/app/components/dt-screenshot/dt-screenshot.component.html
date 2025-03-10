@@ -1,0 +1,15 @@
+<div class="dt-screenshot-layer-transparent">
+  <button class="dt-screenshot-button"
+          (mouseleave)="setIgnoreMouseEvents(true)"
+          (mouseenter)="setIgnoreMouseEvents(false)"
+          (click)="takeScreenshot()">
+    📷
+  </button>
+</div>
+
+<section class="dt-screenshot-corners">
+  <div class="dt-corner dt-top-left"></div>
+  <div class="dt-corner dt-top-right"></div>
+  <div class="dt-corner dt-bottom-left"></div>
+  <div class="dt-corner dt-bottom-right"></div>
+</section>

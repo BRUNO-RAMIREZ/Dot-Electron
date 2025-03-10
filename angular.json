@@ -124,9 +124,7 @@
               "node_modules/@set/web-tags-ng-plugin/styles/web-tags-styles.scss",
               "node_modules/@set/reference-tags-custom-components/assets/styles/references-tags-custom-styles.scss"
             ],
-            "scripts": [
-              "node_modules/@doodle/viewer/assets/js/dd-font-family-kit.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

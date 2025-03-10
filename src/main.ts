@@ -14,9 +14,10 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 declare global {
   interface Window {
     electronAPI: {
-      initScreenshot: () => void;
-      takeScreenshot: () => void;
+      initTakeScreenshot: () => void;
+      initSeeSomething: () => Promise<ArrayBufferLike>;
       onRenderScreenshot: (callback: (buffer: ArrayBufferLike) => void) => void;
+      buildBrowserWindowFormRoute: (route: string) => void;
       setIgnoreMouseEvents: (ignore: boolean) => void;
       setFullScreen: (isFullScreen: boolean) => void;
       removeRenderScreenshotListener: () => void;
