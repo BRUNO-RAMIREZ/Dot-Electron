@@ -15,7 +15,7 @@ function createMainWindow() {
     alwaysOnTop: true,
     frame: false,
     transparent: true,
-    resizable: false,
+    resizable: true,
     movable: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -67,7 +67,6 @@ function setWindowBounds(width, height, alignY) {
 function setFullScreen(event, isFullScreen) {
   if (!mainWindow) return;
 
-  isFullScreen && mainWindow.setPosition(0, 0);
   mainWindow.setMovable(!isFullScreen);
   mainWindow.setFullScreen(isFullScreen);
 }

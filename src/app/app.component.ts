@@ -2,11 +2,12 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, NgZone,
 import {DdDocumentAndVersionResponse} from '@doodle/api';
 import {Subject} from 'rxjs';
 import {map, take, takeUntil} from 'rxjs/operators';
-import {SCREENSHOT_NAME} from './constants';
+import {SCREENSHOT_NAME, SECURE_FULL_SCREEN} from './constants';
 import {DtDocumentOpenAction} from './interfaces/dt-document-open-action.interface';
 import {DtDocumentService} from './services/dt-document.service';
 import {DtEventDocumentActionService} from './services/dt-event-document-action.service';
 import {DtLocalLoginTest} from './utilis/dt-local-login-test';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit, OnDestroy {
               private _dtDocumentService: DtDocumentService,
               private _cdr: ChangeDetectorRef,
               private _injector: Injector,
-              private _ngZone: NgZone) {
+              private _ngZone: NgZone,
+              private _router: Router) {
     this._localLoginTest = new DtLocalLoginTest(this._injector);
     this._localLoginTest.initSession();
     this._unsubscribe = new Subject<void>();
@@ -43,6 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public closeViewer(): void {
     this.documentDetail = undefined;
     window?.electronAPI?.setFullScreen(false);
+    this._router.navigate(['secure/floating-button']);
     this._cdr.detectChanges();
   }
 
@@ -85,6 +88,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribe))
       .subscribe(({document}: DtDocumentOpenAction) => {
         if (!document) return;
+        window?.electronAPI?.setFullScreen(true);
         this._ngZone.run(() => {
           this.documentDetail = {documentId: document.documentId, versionId: document.versionId};
           this._cdr.detectChanges();

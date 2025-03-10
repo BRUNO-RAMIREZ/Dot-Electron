@@ -18,8 +18,8 @@ function setupIPCHandlers(mainWindow) {
     setIgnoreMouseEvents();
   });
 
-  ipcMain.on('setFullScreen', (_, url) => {
-    setFullScreen();
+  ipcMain.on('setFullScreen', (event, url) => {
+    setFullScreen(event, url);
   });
 
   ipcMain.on('buildBrowserWindowFormRoute', (event, route) => {

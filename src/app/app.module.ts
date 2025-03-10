@@ -35,6 +35,7 @@ import {DtCommentsGetDataFacade} from './facades/dt-comments-get-data.facade';
 import {DtWallThumbnailModule} from './plugins/dt-wall-thumbnail/dt-wall-thumbnail.module';
 import {WallBulletinsContainerFacade, WallNotificationBulletinContainerFacade} from '@set-social-services/wall-core';
 import {WallNotificationsModule} from '@set-social-services/wall';
+import { DtFullScreenComponent } from './components/dt-full-screen/dt-full-screen.component';
 
 
 new SetTagsConfig(tagsConfig as TagsConfig);
@@ -48,6 +49,7 @@ DdHttpConfig.getSession().setTenantId(defaultTenant);
     DtSeeSomethingComponent,
     DtScreenshotComponent,
     DtCropComponent,
+    DtFullScreenComponent,
   ],
   imports: [
     BrowserModule,

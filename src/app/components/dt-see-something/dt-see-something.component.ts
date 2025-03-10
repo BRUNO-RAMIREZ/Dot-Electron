@@ -7,7 +7,7 @@ import {buildProjectKey, DdBoardService} from '@doodle/viewer';
 import {ResourceGraphResponse} from '@set-social-services/comment-api';
 import {forkJoin, Observable, Subject} from 'rxjs';
 import {filter, switchMap, takeUntil, tap} from 'rxjs/operators';
-import {SEE_SOMETHING_NAME} from '../../constants';
+import {SECURE_FULL_SCREEN, SEE_SOMETHING_NAME} from '../../constants';
 import {DtDocument} from '../../interfaces/dt-document-open-action.interface';
 import {DtAnnotationsService} from '../../services/dt-annotations.service';
 import {DtCommentsService} from '../../services/dt-comments.service';
@@ -137,7 +137,7 @@ export class DtSeeSomethingComponent implements OnInit, OnDestroy {
   }
 
   private _navigateToFullScreen(): void {
-    this._router.navigate(['secure/aside/tools'], {skipLocationChange: true}).then(() => this._openDocument());
+    this._router.navigate([SECURE_FULL_SCREEN], {skipLocationChange: true}).then(() => this._openDocument());
   }
 
   private _openDocument(): void {
