@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<article class="dt-main-container">
+  <router-outlet></router-outlet>
+
+  <div class="dt-modal-viewer-container dd-scale-in-center-animation"
+       *ngIf="documentDetail">
+    <dt-modal-viewer class="dt-viewer-container"
+                     [documentId]="documentDetail.documentId"
+                     [versionId]="documentDetail.versionId"
+                     (closeEmitter)="closeViewer()">
+    </dt-modal-viewer>
+  </div>
+</article>

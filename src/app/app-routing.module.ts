@@ -2,11 +2,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { DtFloatingButtonComponent } from './secure/components/dt-floating-button/dt-floating-button.component';
 import { DtPanelComponent } from './secure/components/dt-panel/dt-panel.component';
+import {DtCropComponent} from './components/dt-crop/dt-crop.component';
+import {DtScreenshotComponent} from './components/dt-screenshot/dt-screenshot.component';
+import {DtSeeSomethingComponent} from './components/dt-see-something/dt-see-something.component';
+import {DtToolsComponent} from './components/dt-tools/dt-tools.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'secure/floating-button',
+    redirectTo: 'floating-button',
     pathMatch: 'full'
   },
   {
@@ -24,8 +28,24 @@ const routes: Routes = [
       {
         path: 'panel',
         component: DtPanelComponent
+      },
+      {
+        path: 'aside/tools',
+        component: DtToolsComponent
+      },
+      {
+        path: 'full-screen',
+        children: [
+          { path: 'screenshot', component: DtScreenshotComponent },
+          { path: 'see-something', component: DtSeeSomethingComponent },
+          { path: 'crop', component: DtCropComponent }
+        ]
       }
     ]
+  },
+  {
+    path: '**',
+    redirectTo: 'secure/floating-button'
   }
 ];
 

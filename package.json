@@ -13,6 +13,7 @@
     "electron": "ng build && electron .",
     "electron-dev": "ng build --configuration development && electron .",
     "start-electron": "electron .",
+    "electron-watch": "electronmon .",
     "package": "electron-packager . --platform=win32 --arch=x64 --out=dist"
   },
   "private": true,

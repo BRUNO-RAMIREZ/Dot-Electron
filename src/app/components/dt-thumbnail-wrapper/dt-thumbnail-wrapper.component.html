@@ -1,6 +1,6 @@
-<ss-thumbnail-wrapper #thumbnailWrapper
-                      [config]="config"
-                      [contentSlight]="content">
+<ss-thumbnail-wrapper [config]="config"
+                      [contentSlight]="content"
+                      #thumbnailWrapper>
   <dd-thumbnail-actions [contentSlight]="thumbnailWrapper.documentContentSlight"
                         [documentId]="thumbnailWrapper.documentContentSlight.documentId"
                         [identifier]="thumbnailWrapper.documentContentSlight.identifier || ''"
