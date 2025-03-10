@@ -17,7 +17,7 @@ declare global {
       initTakeScreenshot: () => void;
       initSeeSomething: () => Promise<ArrayBufferLike>;
       onRenderScreenshot: (callback: (buffer: ArrayBufferLike) => void) => void;
-      buildBrowserWindowFormRoute: (route: string) => void;
+      buildBrowserWindowFromRoute: (route: string) => void;
       setIgnoreMouseEvents: (ignore: boolean) => void;
       setFullScreen: (isFullScreen: boolean) => void;
     };

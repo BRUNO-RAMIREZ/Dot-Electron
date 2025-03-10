@@ -16,7 +16,7 @@ export class DtToolsComponent {
   }
 
   public initScreenshot(): void {
-    window?.electronAPI?.buildBrowserWindowFormRoute(SCREENSHOT_NAME);
+    window?.electronAPI?.buildBrowserWindowFromRoute(SCREENSHOT_NAME);
   }
 
   public initSeeSomething(): void {
@@ -25,6 +25,6 @@ export class DtToolsComponent {
   }
 
   public initCrop(): void {
-    window?.electronAPI?.buildBrowserWindowFormRoute(CROP_NAME);
+    window?.electronAPI?.buildBrowserWindowFromRoute(CROP_NAME);
   }
 }

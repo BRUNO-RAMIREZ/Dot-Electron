@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {DdDocumentAndVersionResponse} from '@doodle/api';
-import {Subject} from 'rxjs';
+import {fromEvent, Subject} from 'rxjs';
 import {map, take, takeUntil} from 'rxjs/operators';
 import {SCREENSHOT_NAME} from './constants';
 import {DtDocumentOpenAction} from './interfaces/dt-document-open-action.interface';
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
               private _dtDocumentService: DtDocumentService,
               private _cdr: ChangeDetectorRef,
               private _injector: Injector,
+              private _router: Router,
               private _ngZone: NgZone) {
     this._localLoginTest = new DtLocalLoginTest(this._injector);
     this._localLoginTest.initSession();
@@ -43,12 +45,14 @@ export class AppComponent implements OnInit, OnDestroy {
   public closeViewer(): void {
     this.documentDetail = undefined;
     window?.electronAPI?.setFullScreen(false);
+    this._router.navigate(['secure/floating-button']);
     this._cdr.detectChanges();
   }
 
   private _initialize(): void {
     this._listenRenderScreenshot();
     this._listenDocumentOpen();
+    this._listenEscapeKey();
   }
 
   private _finalize(): void {
@@ -89,6 +93,16 @@ export class AppComponent implements OnInit, OnDestroy {
           this.documentDetail = {documentId: document.documentId, versionId: document.versionId};
           this._cdr.detectChanges();
         });
+      });
+  }
+
+  private _listenEscapeKey(): void {
+    fromEvent<KeyboardEvent>(document, 'keydown')
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          this._ngZone.run(() => this.closeViewer());
+        }
       });
   }
 }

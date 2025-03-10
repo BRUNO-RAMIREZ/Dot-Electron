@@ -1,5 +1,5 @@
 const {ipcMain, shell} = require('electron');
-const {setIgnoreMouseEvents, destroySecondView, buildBrowserWindow} = require('./secondWindowManager');
+const {setIgnoreMouseEvents, destroySecondView, buildBrowserWindowFromRoute} = require('./secondWindowManager');
 const {setWindowBounds, setFullScreen, initTakeScreenShot, buildScreenshotBuffer} = require('./windowManager');
 
 function setupIPCHandlers(mainWindow) {
@@ -18,13 +18,14 @@ function setupIPCHandlers(mainWindow) {
     setIgnoreMouseEvents();
   });
 
-  ipcMain.on('setFullScreen', (_, url) => {
-    setFullScreen();
+  ipcMain.on('setFullScreen', (event, isFullScreen) => {
+    !isFullScreen && destroySecondView();
+    setFullScreen(event, isFullScreen);
   });
 
-  ipcMain.on('buildBrowserWindowFormRoute', (event, route) => {
+  ipcMain.on('buildBrowserWindowFromRoute', (event, route) => {
     destroySecondView();
-    buildBrowserWindow(mainWindow,route);
+    buildBrowserWindowFromRoute(mainWindow, route);
   });
 
   ipcMain.on('initTakeScreenshot', async (event) => {

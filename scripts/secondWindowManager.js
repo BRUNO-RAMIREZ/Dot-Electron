@@ -1,8 +1,9 @@
 const {BrowserWindow, screen} = require('electron');
+const path = require('path');
 
 let secondWindow = null;
 
-function buildBrowserWindow(mainWindow, route) {
+function buildBrowserWindowFromRoute(mainWindow, route) {
   secondWindow = new BrowserWindow({
     fullscreen: true,
     alwaysOnTop: true,
@@ -13,7 +14,6 @@ function buildBrowserWindow(mainWindow, route) {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-
   secondWindow.loadURL(`http://localhost:4200/secure/full-screen/${route}`);
 
   return secondWindow;
@@ -25,8 +25,9 @@ function setIgnoreMouseEvents(event, ignore) {
 
 function destroySecondView() {
   if (!secondWindow) return;
+  console.info('destroySecondView')
   secondWindow.destroy();
   secondWindow = undefined;
 }
 
-module.exports = {buildBrowserWindow, setIgnoreMouseEvents, destroySecondView};
+module.exports = {buildBrowserWindowFromRoute, setIgnoreMouseEvents, destroySecondView};

@@ -10,6 +10,8 @@ import {
   CommentWallNotificationBulletinContainerFacade
 } from '@set-social-services/comment-core';
 import {SECURITY_CONFIG} from '@set-social-services/common-http';
+import {WallNotificationsModule} from '@set-social-services/wall';
+import {WallBulletinsContainerFacade, WallNotificationBulletinContainerFacade} from '@set-social-services/wall-core';
 import {WEBSOCKET_CONFIG, WEBSOCKET_PATH} from '@set/commons-ws';
 import {ReferenceDocumentsFacade, ReferenceTagsFacade} from '@set/social-tags-core/src';
 import {SetTagsConfig, TagsConfig} from '@set/social-tags-core/src/config';
@@ -17,25 +19,23 @@ import {defaultTenant, prefixWs, securityConfig, tagsConfig, websocketConfig} fr
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {DtCropComponent} from './components/dt-crop/dt-crop.component';
+import {DtFullScreenComponent} from './components/dt-full-screen/dt-full-screen.component';
 import {DtModalViewerComponent} from './components/dt-modal-viewer/dt-modal-viewer.component';
 import {DtScreenshotComponent} from './components/dt-screenshot/dt-screenshot.component';
 import {DtSeeSomethingComponent} from './components/dt-see-something/dt-see-something.component';
 import {DtThumbnailWrapperComponent} from './components/dt-thumbnail-wrapper/dt-thumbnail-wrapper.component';
+import {DtCommentsGetDataFacade} from './facades/dt-comments-get-data.facade';
 import {DtEntityReferenceFacade} from './facades/dt-entity-reference.facade';
 import {doodleModules} from './imports/doodle-modules';
 import {ngrxModules} from './imports/ngrx-modules';
 import {piModules} from './imports/pi-modules';
 import {ssModules} from './imports/ss-modules';
+import {DtWallThumbnailModule} from './plugins/dt-wall-thumbnail/dt-wall-thumbnail.module';
+import {SecureModule} from './secure/secure.module';
 import {DtDocumentService} from './services/dt-document.service';
 import {DtEventActionService} from './services/dt-event-action.service';
 import {DtEventDocumentActionService} from './services/dt-event-document-action.service';
 import {DtTagConfigService} from './services/dt-tag-config.service';
-import {SecureModule} from './secure/secure.module';
-import {DtCommentsGetDataFacade} from './facades/dt-comments-get-data.facade';
-import {DtWallThumbnailModule} from './plugins/dt-wall-thumbnail/dt-wall-thumbnail.module';
-import {WallBulletinsContainerFacade, WallNotificationBulletinContainerFacade} from '@set-social-services/wall-core';
-import {WallNotificationsModule} from '@set-social-services/wall';
-
 
 new SetTagsConfig(tagsConfig as TagsConfig);
 DdHttpConfig.getSession().setTenantId(defaultTenant);
@@ -48,6 +48,7 @@ DdHttpConfig.getSession().setTenantId(defaultTenant);
     DtSeeSomethingComponent,
     DtScreenshotComponent,
     DtCropComponent,
+    DtFullScreenComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain, desktopCapturer, screen} = require('electron');
+const {BrowserWindow, desktopCapturer, screen} = require('electron');
 const path = require('path');
 
 let mainWindow = null;
@@ -67,7 +67,6 @@ function setWindowBounds(width, height, alignY) {
 function setFullScreen(event, isFullScreen) {
   if (!mainWindow) return;
 
-  isFullScreen && mainWindow.setPosition(0, 0);
   mainWindow.setMovable(!isFullScreen);
   mainWindow.setFullScreen(isFullScreen);
 }
@@ -100,4 +99,4 @@ async function takeScreenshot() {
   return nativeImage;
 }
 
-module.exports = {createMainWindow, setWindowBounds, setFullScreen, initTakeScreenShot, buildScreenshotBuffer};
+module.exports = {createMainWindow, setWindowBounds, setFullScreen, initTakeScreenShot, buildScreenshotBuffer, mainWindow};
