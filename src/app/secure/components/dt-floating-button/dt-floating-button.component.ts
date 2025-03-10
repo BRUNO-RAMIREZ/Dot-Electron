@@ -74,6 +74,19 @@ export class DtFloatingButtonComponent implements OnInit, AfterViewInit {
     pointerEvent.stopPropagation();
     this.isSwitchActivated = !this.isSwitchActivated;
     // !this._isPanelDotViewsExpanded && this._updateIFrameContainerDimensions();
-    this._cdr.markForCheck();
+    this._cdr.detectChanges();
+
+    requestAnimationFrame(() => {
+      this._updateWindowDimensions();
+    });
+  }
+
+  private _updateWindowDimensions(): void {
+    const width: number = this.floatingViewContainer.nativeElement.offsetWidth;
+    const height: number = this.floatingViewContainer.nativeElement.offsetHeight;
+    this._dtElectronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
+      width,
+      height,
+    });
   }
 }

@@ -25,6 +25,6 @@ export class DtToolsComponent {
   }
 
   public initCrop(): void {
-    window?.electronAPI?.buildBrowserWindowFormRoute(CROP_NAME);
+    window.electronAPI.buildBrowserWindowFormRoute(CROP_NAME);
   }
 }
