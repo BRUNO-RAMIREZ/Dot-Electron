@@ -8,9 +8,10 @@ app.whenReady().then(() => {
   mainWindow = createMainWindow();
   setupIPCHandlers(mainWindow);
 
-  mainWindow.loadFile(`${__dirname}/dist/index.html`).then(() => {
-    console.log('LOADED Successfully');
-  });
+  // mainWindow.loadFile(`${__dirname}/dist/index.html`).then(() => {
+  //   console.log('LOADED Successfully');
+  // });
+  mainWindow.loadURL('http://localhost:4200');
   mainWindow.webContents.openDevTools();
 });
 

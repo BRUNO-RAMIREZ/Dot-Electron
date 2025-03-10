@@ -1,20 +1,22 @@
-<article class="dt-floating-button-container"
-         [ngClass]="{'dt-floating-button-container-on-state':isSwitchActivated}"
+<article class="dt-floating-view-container"
+         [ngClass]="{'dt-floating-view-container-on-state':isSwitchActivated}"
          [hidden]=isButtonHidden
-         #floatingButtonContainer>
-  <section class="dt-floating-logo" (click)="listenDButtonClick()">
-    <img src="assets/images/dot-logo.webp" alt="Dot logo">
-  </section>
-
-  <div class="dt-floating-button-switch-container">
-    <div class="dt-floating-button-switch-slider"
-         (pointerdown)="listenDSwitchPointerDown($event)"
-         (pointerup)="listenDSwitchPointerUp($event)">
-      <span class="dt-floating-button-switch-label">Off</span>
-
-      <div class="dt-floating-button-switch-circle"></div>
-
-      <span class="dt-floating-button-switch-label">On</span>
+         #floatingViewContainer>
+  <section class="dt-floating-button-container">
+    <div class="dt-floating-logo" (click)="listenDButtonClick()">
+      <img src="assets/images/dot-logo.webp" alt="Dot logo">
     </div>
-  </div>
+
+    <div class="dt-floating-button-switch-container">
+      <div class="dt-floating-button-switch-slider"
+           (pointerdown)="listenDSwitchPointerDown($event)"
+           (pointerup)="listenDSwitchPointerUp($event)">
+        <span class="dt-floating-button-switch-label">Off</span>
+
+        <div class="dt-floating-button-switch-circle"></div>
+
+        <span class="dt-floating-button-switch-label">On</span>
+      </div>
+    </div>
+  </section>
 </article>

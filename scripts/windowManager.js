@@ -19,8 +19,8 @@ function createMainWindow() {
     movable: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: true,  // Asegura que el contexto de la página está aislado
-      nodeIntegration: false,  // Previene acceso a Node.js desde la página web
+      contextIsolation: true,
+      nodeIntegration: false,
       enableRemoteModule: false
     },
   });
@@ -45,20 +45,23 @@ function alignWindowToRightEdge() {
   mainWindow.setBounds({x: newX, y: newY, width, height});
 }
 
-function setWindowSize(width, height) {
+function setWindowBounds(width, height, alignY) {
   if (!mainWindow) return;
 
-  const { width: screenWidth, height: screenHeight, x: screenX, y: screenY } = screen.getPrimaryDisplay().workArea;
-  let { x, y, width: currentWidth, height: currentHeight } = mainWindow.getBounds();
+  const {width: screenWidth, height: screenHeight, x: screenX, y: screenY} = screen.getPrimaryDisplay().workArea;
+  let {y: currentY, width: currentWidth, height: currentHeight} = mainWindow.getBounds();
 
   width = width < 0 ? screenWidth : width ?? currentWidth;
   height = height < 0 ? screenHeight : height ?? currentHeight;
 
-  // Alinear la ventana al borde derecho
   const newX = screenX + screenWidth - width;
-  const newY = Math.max(Math.min(y, screenY + screenHeight - height), screenY);
 
-  mainWindow.setBounds({ x: newX, y: newY, width, height });
+  const newY =
+    alignY !== undefined ?
+      alignY
+      : Math.max(Math.min(currentY, screenY + screenHeight - height), screenY);
+
+  mainWindow.setBounds({x: newX, y: newY, width, height});
 }
 
-module.exports = { createMainWindow, setWindowSize };
+module.exports = {createMainWindow, setWindowBounds};

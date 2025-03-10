@@ -2,13 +2,14 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, ElementRef,
+  Component,
+  ElementRef,
   OnInit,
-  Renderer2, ViewChild,
+  Renderer2,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import {DtElectronService} from '../../../services/dt-electron.service';
-import {DtPayload} from '../../../interfaces/dt-payload.interface';
 import {DtAction} from '../../../enums/dt-action.enum';
 import {Router} from '@angular/router';
 
@@ -19,7 +20,7 @@ import {Router} from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DtFloatingButtonComponent implements OnInit, AfterViewInit {
-  @ViewChild('floatingButtonContainer') public floatingButtonContainer!: ElementRef<HTMLElement>;
+  @ViewChild('floatingViewContainer') public floatingViewContainer!: ElementRef<HTMLElement>;
 
   public isButtonHidden: boolean;
   public isSwitchActivated: boolean;
@@ -27,6 +28,7 @@ export class DtFloatingButtonComponent implements OnInit, AfterViewInit {
   private _clickSwitchStartTime: number;
 
   private readonly _CLICK_THRESHOLD: number = 230;
+  private readonly _INITIAL_TOP_WINDOW_VALUE: number = 25;
 
   constructor(private _dtElectronService: DtElectronService,
               private _cdr: ChangeDetectorRef,
@@ -38,15 +40,21 @@ export class DtFloatingButtonComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this._dtElectronService.sendMessage(DtAction.CHANGE_DIMENSIONS, {width: 50, height: 50})
+    this._dtElectronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
+      width: 50,
+      height: 50,
+      y: this._INITIAL_TOP_WINDOW_VALUE
+    });
   }
 
   ngAfterViewInit(): void {
-    const width: number = this.floatingButtonContainer.nativeElement.offsetWidth;
-    const height: number = this.floatingButtonContainer.nativeElement.offsetHeight;
-    console.log(width, height)
-    this._dtElectronService.sendMessage(DtAction.CHANGE_DIMENSIONS, {width, height})
-
+    const width: number = this.floatingViewContainer.nativeElement.offsetWidth;
+    const height: number = this.floatingViewContainer.nativeElement.offsetHeight;
+    this._dtElectronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
+      width,
+      height,
+      y: this._INITIAL_TOP_WINDOW_VALUE
+    });
   }
 
   public listenDButtonClick(): void {

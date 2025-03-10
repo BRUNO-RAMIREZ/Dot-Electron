@@ -28,6 +28,8 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "baseHref": "/",
+            "deployUrl": "/",
             "assets": [
               "src/favicon.ico",
               "src/assets",

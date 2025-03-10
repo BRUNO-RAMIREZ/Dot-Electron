@@ -96,7 +96,7 @@ export class DtPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   private _updateWindowDimensions(): void {
     const expandedPanelContainerWidth = this._EXPANDED_PANEL_WIDTH + this._SIDE_BAR_WIDTH;
     const width = this.isMinimized ? this._SIDE_BAR_WIDTH : expandedPanelContainerWidth;
-    this._electronService.sendMessage(DtAction.CHANGE_DIMENSIONS, {width})
+    this._electronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, {width})
   }
 
   private _listenChangeOpacityTransitionEnd(): void {
@@ -144,8 +144,9 @@ export class DtPanelComponent implements OnInit, AfterViewInit, OnDestroy {
     const width = this.isMinimized ? this._SIDE_BAR_WIDTH : expandedPanelContainerWidth;
     const payload: DtPayload = {
       width: width,
-      height: -1
+      height: -1,
+      y: 0
     };
-    this._electronService.sendMessage(DtAction.CHANGE_DIMENSIONS, payload);
+    this._electronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, payload);
   }
 }
