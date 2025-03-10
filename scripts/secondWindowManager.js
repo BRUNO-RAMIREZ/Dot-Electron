@@ -20,6 +20,7 @@ function buildBrowserWindowFromRoute(mainWindow, route) {
 }
 
 function setIgnoreMouseEvents(event, ignore) {
+  console.log(ignore, secondWindow)
   secondWindow && secondWindow.setIgnoreMouseEvents(ignore, {forward: true});
 }
 

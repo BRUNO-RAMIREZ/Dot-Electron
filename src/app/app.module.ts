@@ -37,6 +37,7 @@ import {DtEventActionService} from './services/dt-event-action.service';
 import {DtEventDocumentActionService} from './services/dt-event-document-action.service';
 import {DtTagConfigService} from './services/dt-tag-config.service';
 
+
 new SetTagsConfig(tagsConfig as TagsConfig);
 DdHttpConfig.getSession().setTenantId(defaultTenant);
 
@@ -48,7 +49,7 @@ DdHttpConfig.getSession().setTenantId(defaultTenant);
     DtSeeSomethingComponent,
     DtScreenshotComponent,
     DtCropComponent,
-    DtFullScreenComponent
+    DtFullScreenComponent,
   ],
   imports: [
     BrowserModule,

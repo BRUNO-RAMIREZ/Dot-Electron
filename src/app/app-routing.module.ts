@@ -32,8 +32,8 @@ const routes: Routes = [
       {
         path: 'full-screen',
         children: [
-          { path: 'screenshot', component: DtScreenshotComponent },
-          { path: 'see-something', component: DtSeeSomethingComponent },
+          {path: 'screenshot', component: DtScreenshotComponent},
+          {path: 'see-something', component: DtSeeSomethingComponent},
           {path: 'crop', component: DtCropComponent},
           {path: '', component: DtFullScreenComponent}
         ]
@@ -50,4 +50,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -5,11 +5,11 @@
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     max-height: 144px;
     max-width: 40px;
-    padding: 8px 0;
-    width: 35px;
+    padding: 6px 0;
+    width: 30px;
   }
 
   &-button {
@@ -18,13 +18,13 @@
     border: none;
     cursor: pointer;
     display: flex;
-    height: 32px;
+    height: 30px;
     justify-content: center;
-    width: 32px;
+    width: 30px;
 
     img {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
     }
 
     &:hover {

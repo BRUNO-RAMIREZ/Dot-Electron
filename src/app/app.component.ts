@@ -27,8 +27,8 @@ export class AppComponent implements OnInit, OnDestroy {
               private _dtDocumentService: DtDocumentService,
               private _cdr: ChangeDetectorRef,
               private _injector: Injector,
-              private _router: Router,
-              private _ngZone: NgZone) {
+              private _ngZone: NgZone,
+              private _router: Router) {
     this._localLoginTest = new DtLocalLoginTest(this._injector);
     this._localLoginTest.initSession();
     this._unsubscribe = new Subject<void>();
