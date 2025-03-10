@@ -20,7 +20,6 @@ declare global {
       buildBrowserWindowFormRoute: (route: string) => void;
       setIgnoreMouseEvents: (ignore: boolean) => void;
       setFullScreen: (isFullScreen: boolean) => void;
-      removeRenderScreenshotListener: () => void;
     };
   }
 }

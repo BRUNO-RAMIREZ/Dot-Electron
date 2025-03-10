@@ -42,7 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public closeViewer(): void {
     this.documentDetail = undefined;
-    window.electronAPI.setFullScreen(false);
+    window?.electronAPI?.setFullScreen(false);
     this._cdr.detectChanges();
   }
 
@@ -54,13 +54,12 @@ export class AppComponent implements OnInit, OnDestroy {
   private _finalize(): void {
     this._unsubscribe.next();
     this._unsubscribe.complete();
-    window?.electronAPI?.removeRenderScreenshotListener();
   }
 
   private _listenRenderScreenshot(): void {
     window?.electronAPI?.onRenderScreenshot((buffer) => {
       this._saveScreenshotIntoLibrary(buffer);
-      window.electronAPI.setFullScreen(true);
+      window?.electronAPI?.setFullScreen(true);
     });
   }
 

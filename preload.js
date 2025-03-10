@@ -6,6 +6,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
   onRenderScreenshot: (callback) => ipcRenderer.on('renderScreenshot', (event, buffer) => callback(buffer)),
   buildBrowserWindowFormRoute: (route) => ipcRenderer.send('buildBrowserWindowFormRoute', route),
   setIgnoreMouseEvents: (ignore) => ipcRenderer.send('setIgnoreMouseEvents', ignore),
-  setFullScreen: (isFullScreen) => ipcRenderer.send('setFullScreen', isFullScreen),
-  removeRenderScreenshotListener: () => ipcRenderer.removeAllListeners('renderScreenshot'),
+  setFullScreen: (isFullScreen) => ipcRenderer.send('setFullScreen', isFullScreen)
 });
