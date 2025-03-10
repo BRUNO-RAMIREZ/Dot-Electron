@@ -54,7 +54,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private _finalize(): void {
     this._unsubscribe.next();
     this._unsubscribe.complete();
-    window?.electronAPI?.removeRenderScreenshotListener();
   }
 
   private _listenRenderScreenshot(): void {

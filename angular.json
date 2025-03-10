@@ -28,10 +28,11 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "baseHref": "/",
+            "deployUrl": "/",
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/screenshot.html",
               {
                 "glob": "**/*",
                 "input": "./node_modules/@doodle/viewer/assets/",
