@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {CROP_NAME, SCREENSHOT_NAME, SECURE_FULL_SCREEN} from '../../constants';
+import {CROP_NAME, SCREENSHOT_NAME, SECURE_FULL_SCREEN} from '../../../constants';
 
 @Component({
   selector: 'dt-see-something',
@@ -16,12 +16,23 @@ export class DtToolsComponent {
   }
 
   public initScreenshot(): void {
-    window.electronAPI.buildBrowserWindowFormRoute(SCREENSHOT_NAME);
+    try {
+      window.electronAPI.buildBrowserWindowFormRoute(SCREENSHOT_NAME);
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   public initSeeSomething(): void {
     // window.electronAPI.buildBrowserWindowFormRoute(SEE_SOMETHING_NAME);
-    window.electronAPI.setFullScreen(true);
+    console.info('Aqui')
+    try {
+      window.electronAPI.setFullScreen(true);
+    } catch (e) {
+      console.error(e)
+    }
+    console.info('Aqui')
+
     this._router.navigate([`${SECURE_FULL_SCREEN}/see-something`]);
   }
 

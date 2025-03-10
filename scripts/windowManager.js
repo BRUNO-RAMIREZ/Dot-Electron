@@ -1,4 +1,4 @@
-const {BrowserWindow, screen} = require('electron');
+const {app, BrowserWindow, ipcMain, desktopCapturer, screen} = require('electron');
 const path = require('path');
 
 let mainWindow = null;
@@ -64,4 +64,40 @@ function setWindowBounds(width, height, alignY) {
   mainWindow.setBounds({x: newX, y: newY, width, height});
 }
 
-module.exports = {createMainWindow, setWindowBounds};
+function setFullScreen(event, isFullScreen) {
+  if (!mainWindow) return;
+
+  isFullScreen && mainWindow.setPosition(0, 0);
+  mainWindow.setMovable(!isFullScreen);
+  mainWindow.setFullScreen(isFullScreen);
+}
+
+async function initTakeScreenShot() {
+  mainWindow && mainWindow.hide();
+  const screenshotBuffer = await buildScreenshotBuffer();
+  if (!mainWindow) return;
+  mainWindow.show();
+  mainWindow.webContents.send('renderScreenshot', screenshotBuffer);
+}
+
+async function buildScreenshotBuffer() {
+  const screenshot = await takeScreenshot();
+  return screenshot.toPNG().buffer;
+}
+
+async function takeScreenshot() {
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const {width, height} = primaryDisplay.size;
+  const optionsForCapture = {
+    types: ['screen'],
+    thumbnailSize: {width, height}
+  };
+  const sources = await desktopCapturer.getSources(optionsForCapture);
+
+  const primarySource = sources.find(({display_id}) => display_id == primaryDisplay.id);
+  const nativeImage = primarySource.thumbnail;
+
+  return nativeImage;
+}
+
+module.exports = {createMainWindow, setWindowBounds, setFullScreen, initTakeScreenShot, buildScreenshotBuffer};

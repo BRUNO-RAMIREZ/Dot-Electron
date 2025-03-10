@@ -6,12 +6,14 @@ import {RouterModule} from '@angular/router';
 import { DtSideBarComponent } from './components/dt-side-bar/dt-side-bar.component';
 import {wallDotModules} from './imports/wall-dot-module';
 import {WallBulletinsPanelModule} from '@set-social-services/wall';
+import {DtToolsComponent} from './components/dt-tools/dt-tools.component';
 
 @NgModule({
   declarations: [
     DtFloatingButtonComponent,
     DtPanelComponent,
-    DtSideBarComponent
+    DtSideBarComponent,
+    DtToolsComponent
   ],
   imports: [
     ...wallDotModules,

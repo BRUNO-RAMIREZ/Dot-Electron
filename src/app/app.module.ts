@@ -21,7 +21,6 @@ import {DtModalViewerComponent} from './components/dt-modal-viewer/dt-modal-view
 import {DtScreenshotComponent} from './components/dt-screenshot/dt-screenshot.component';
 import {DtSeeSomethingComponent} from './components/dt-see-something/dt-see-something.component';
 import {DtThumbnailWrapperComponent} from './components/dt-thumbnail-wrapper/dt-thumbnail-wrapper.component';
-import {DtToolsComponent} from './components/dt-tools/dt-tools.component';
 import {DtEntityReferenceFacade} from './facades/dt-entity-reference.facade';
 import {doodleModules} from './imports/doodle-modules';
 import {ngrxModules} from './imports/ngrx-modules';
@@ -49,7 +48,6 @@ DdHttpConfig.getSession().setTenantId(defaultTenant);
     DtSeeSomethingComponent,
     DtScreenshotComponent,
     DtCropComponent,
-    DtToolsComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +55,7 @@ DdHttpConfig.getSession().setTenantId(defaultTenant);
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
+    DtWallThumbnailModule.forRoot(),
     ...doodleModules,
     ...ngrxModules,
     ...piModules,

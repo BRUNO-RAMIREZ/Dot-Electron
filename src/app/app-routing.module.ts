@@ -5,7 +5,6 @@ import { DtPanelComponent } from './secure/components/dt-panel/dt-panel.componen
 import {DtCropComponent} from './components/dt-crop/dt-crop.component';
 import {DtScreenshotComponent} from './components/dt-screenshot/dt-screenshot.component';
 import {DtSeeSomethingComponent} from './components/dt-see-something/dt-see-something.component';
-import {DtToolsComponent} from './components/dt-tools/dt-tools.component';
 
 const routes: Routes = [
   {
@@ -28,10 +27,6 @@ const routes: Routes = [
       {
         path: 'panel',
         component: DtPanelComponent
-      },
-      {
-        path: 'aside/tools',
-        component: DtToolsComponent
       },
       {
         path: 'full-screen',

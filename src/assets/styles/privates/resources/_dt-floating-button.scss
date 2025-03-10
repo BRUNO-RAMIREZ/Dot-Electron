@@ -17,8 +17,8 @@
     gap: 5px;
     height: fit-content;
     justify-content: center;
-    padding: 5px;
-    width: 40px;
+    padding: 7px 5px;
+    width: 50px;
     -webkit-app-region: drag;
 
     .dt-floating-logo {
@@ -43,6 +43,7 @@
     .dt-floating-button-switch-container {
       align-items: center;
       background-color: #fff;
+      cursor: pointer;
       border-radius: 10px;
       display: flex;
       height: 10px;
@@ -60,7 +61,6 @@
         transition: transform 0.2s ease-in-out;
 
         .dt-floating-button-switch-label {
-          cursor: pointer;
           font-family: "Poppins", sans-serif;
           font-size: 8px;
         }
@@ -74,16 +74,16 @@
         }
       }
     }
+  }
 
-    &.dt-floating-view-container-on-state {
-      .dt-floating-button-container {
-        .dt-floating-button-switch-container {
-          .dt-floating-button-switch-slider {
-            transform: translateX(-19px);
+  &.dt-floating-view-container-on-state {
+    .dt-floating-button-container {
+      .dt-floating-button-switch-container {
+        .dt-floating-button-switch-slider {
+          transform: translateX(-19px);
 
-            .dt-floating-button-switch-circle {
-              background-color: #e148a2;
-            }
+          .dt-floating-button-switch-circle {
+            background-color: #e148a2;
           }
         }
       }
