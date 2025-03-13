@@ -1,0 +1,82 @@
+.dt-panel-container {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: row;
+  height: 100vh;
+  max-width: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: none;
+  width: fit-content;
+
+  .dt-panel-control-buttons {
+    align-items: end;
+    //align-self: flex-end;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    height: fit-content;
+    margin-right: 15px;
+    margin-top: 10px;
+    width: 35px;
+
+    .dt-panel-control-close-button,
+    .dt-panel-control-minimize-expand-button {
+      align-items: center;
+      border: 0 solid;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-flex;
+      height: 14px;
+      justify-content: center;
+      position: relative;
+      width: 14px;
+    }
+
+    .dt-panel-control-close-button {
+      background-color: #ff6767;
+
+      &::before {
+        background-color: #393a6c;
+        border-radius: 50%;
+        content: '';
+        display: inline-flex;
+        min-height: 6px;
+        min-width: 6px;
+      }
+    }
+
+    .dt-panel-control-minimize-expand-button {
+      background-color: #f0cb00;
+      color: #393a6c;
+      font-size: 7px;
+
+      .dt-extension-icon-minimize {
+        font-size: 10px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .dt-main-panel-container {
+    box-shadow: -3px 0 10px rgba(46, 46, 98, 0.1);
+    display: inline-flex;
+    flex-direction: row;
+    height: 100%;
+    width: fit-content;
+
+    .dt-panel-content {
+      background-color: #f1f6fc;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      width: 500px;
+
+      .wall-injection-dobar {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,99 @@
+.dt-side-bar-container {
+  align-items: center;
+  background-color: #fff6ee;
+  display: inline-flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 0 5px;
+  width: 50px;
+
+  .dt-side-bar-panel-top {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 55%;
+    justify-content: space-between;
+
+    .dt-aside-panel-tabs-container {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      height: fit-content;
+      padding-top: 14px;
+      width: 100%;
+
+      .dt-wall-btn{
+
+      }
+
+      .dt-aside-panel-tab {
+        align-items: center;
+        background-color: #fff;
+        border: 0 solid;
+        border-radius: 10px;
+        color: #98cef7;
+        cursor: pointer;
+        display: inline-flex;
+        font-size: 18px;
+        height: 40px;
+        justify-content: center;
+        width: 40px;
+
+        &:hover {
+          background: linear-gradient(#62d1ff 0%, #69b2fa 100%);
+          box-shadow: 0 8px 10px rgba(4, 59, 141, 0.1);
+          color: #fff;
+        }
+
+        &.active {
+          background: linear-gradient(#62d1ff 0%, #69b2fa 100%);
+          box-shadow: 0 8px 10px rgba(4, 59, 141, 0.1);
+          color: #fff;
+        }
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .dt-side-bar-dynamic-options-container{
+      .dt-dynamic-options-container {
+        width: 35px;
+      }
+    }
+  }
+
+  .dt-side-bar-bottom-container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: fit-content;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+
+    .dt-side-bar-avatar-container{
+      display: inline-block;
+      height: 30px;
+      position: relative;
+      width: 30px;
+
+      .dt-side-bar-avatar-img {
+        background-color: #f0f0f0;
+        border-radius: 50%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.3s ease;
+        width: 100%;
+
+        &.dt-side-bar-avatar-img-placeholder {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

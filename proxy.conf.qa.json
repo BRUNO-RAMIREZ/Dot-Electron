@@ -1,0 +1,61 @@
+{
+  "/sds/*": {
+    "target": "https://qa.platform.ss.set.digitalharbor.us/doodle/documents",
+    "secure": false,
+    "pathRewrite": {
+      "/sds": ""
+    },
+    "logLevel": "debug"
+  },
+  "/set/socialServices/*": {
+    "target": "https://qa.platform.ss.set.digitalharbor.us",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "/set/socialServices/health": "/health"
+    }
+  },
+  "/doodle/set/socialServices/websockets/wsBroker/*": {
+    "target": "wss://qa.platform.ss.set.digitalharbor.us",
+    "ws": true,
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "/doodle": ""
+    }
+  },
+  "/tag-service/*": {
+    "target": "https://qa.platform.ss.set.digitalharbor.us/pi",
+    "secure": false,
+    "logLevel": "info"
+  },
+  "/security-service/*": {
+    "target": "https://qa.platform.ss.set.digitalharbor.us/pi",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false
+  },
+  "/social-profile-service/*": {
+    "target": "https://qa.platform.ss.set.digitalharbor.us/pi",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false
+  },
+  "/annotation-service": {
+    "target": "https://qa.platform.ss.set.digitalharbor.us/doodle/annotations",
+    "secure": false,
+    "pathRewrite": {
+      "/annotation-service": ""
+    },
+    "logLevel": "debug"
+  },
+  "/noodle-service/*": {
+    "target": "https://dev.platform.ss.set.digitalharbor.us/noodle",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/noodle-service": "/noodle-service"
+    }
+  }
+}

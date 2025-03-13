@@ -1,0 +1,8 @@
+<article class="dt-wall-thumbnail"
+         (click)="stopClickEvent($event)">
+  <ng-container *ngIf="documentReference">
+    <doodle-thumbnail [documentId]="documentReference.documentId"
+                      [versionId]="documentReference.versionId"
+                      (documentDetailsEvent)="onClickThumbnail()"></doodle-thumbnail>
+  </ng-container>
+</article>

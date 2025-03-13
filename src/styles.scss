@@ -1,5 +1,23 @@
+@import "./assets/styles/dt-styles";
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  &:hover {
-    background-color: blue;
-  }
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.dt-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
