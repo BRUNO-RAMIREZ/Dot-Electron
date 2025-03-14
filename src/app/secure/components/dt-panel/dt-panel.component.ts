@@ -3,20 +3,21 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef, OnDestroy,
+  ElementRef,
+  OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {DtElectronService} from '../../../services/dt-electron.service';
-import {DtAction} from '../../../enums/dt-action.enum';
-import {fromEvent, Subject} from 'rxjs';
-import {filter, takeUntil} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {DtPayload} from '../../../interfaces/dt-payload.interface';
 import {FeaturesConfig} from '@set-social-services/wall-api';
 import {WallBulletinsContainerFacade} from '@set-social-services/wall-core';
+import {fromEvent, Subject} from 'rxjs';
+import {filter, takeUntil} from 'rxjs/operators';
+import {DtAction} from '../../../enums/dt-action.enum';
+import {DtElectronService} from '../../../services/dt-electron.service';
+import {buildElectronMessage} from '../../../utilis/dt-electron-messages-builder';
 
 @Component({
   selector: 'app-dt-panel',
@@ -96,7 +97,7 @@ export class DtPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   private _updateWindowDimensions(): void {
     const expandedPanelContainerWidth = this._EXPANDED_PANEL_WIDTH + this._SIDE_BAR_WIDTH;
     const width = this.isMinimized ? this._SIDE_BAR_WIDTH : expandedPanelContainerWidth;
-    this._electronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, {width})
+    this._electronService.sendMessage(buildElectronMessage(DtAction.CHANGE_WINDOW_BOUNDS, {width}))
   }
 
   private _listenChangeOpacityTransitionEnd(): void {
@@ -142,11 +143,10 @@ export class DtPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   private _initialize(): void {
     const expandedPanelContainerWidth = this._EXPANDED_PANEL_WIDTH + this._SIDE_BAR_WIDTH;
     const width = this.isMinimized ? this._SIDE_BAR_WIDTH : expandedPanelContainerWidth;
-    const payload: DtPayload = {
+    this._electronService.sendMessage(buildElectronMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
       width: width,
       height: -1,
       y: 0
-    };
-    this._electronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, payload);
+    }));
   }
 }

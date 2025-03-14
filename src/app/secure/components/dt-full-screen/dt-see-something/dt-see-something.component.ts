@@ -17,10 +17,12 @@ import {ResourceGraphResponse} from '@set-social-services/comment-api';
 import {forkJoin, Observable, Subject} from 'rxjs';
 import {filter, switchMap, takeUntil, tap} from 'rxjs/operators';
 import {SECURE_FULL_SCREEN, SEE_SOMETHING_NAME} from '../../../../constants';
+import {DtAction} from '../../../../enums/dt-action.enum';
 import {DtDocument} from '../../../../interfaces/dt-document-open-action.interface';
 import {DtAnnotationsService} from '../../../../services/dt-annotations.service';
 import {DtCommentsService} from '../../../../services/dt-comments.service';
 import {DtDocumentService} from '../../../../services/dt-document.service';
+import {DtElectronService} from '../../../../services/dt-electron.service';
 import {DtEventDocumentActionService} from '../../../../services/dt-event-document-action.service';
 
 @Component({
@@ -44,6 +46,7 @@ export class DtSeeSomethingComponent implements OnInit, OnDestroy {
               private _dtAnnotationsService: DtAnnotationsService,
               private _dtCommentsService: DtCommentsService,
               private _dtDocumentService: DtDocumentService,
+              private _dtElectronService: DtElectronService,
               private _sanitizer: DomSanitizer,
               private _cdr: ChangeDetectorRef,
               private _router: Router) {
@@ -80,11 +83,12 @@ export class DtSeeSomethingComponent implements OnInit, OnDestroy {
   }
 
   private _takeCapture(): void {
-    window?.electronAPI?.initSeeSomething()
-      .then((imageArrayBuffer: ArrayBufferLike) => {
-        const imageUrl = URL.createObjectURL(new Blob([imageArrayBuffer], {type: 'image/png'}));
+    this._dtElectronService.invoke<{ screenshotBuffer: ArrayBuffer }>({channel: DtAction.INIT_SEE_SOMETHING})
+      .then(({screenshotBuffer}) => {
+        console.info('screenshotBuffer', screenshotBuffer)
+        const imageUrl = URL.createObjectURL(new Blob([screenshotBuffer], {type: 'image/png'}));
         this.imageSafeUrl = this._sanitizer.bypassSecurityTrustUrl(imageUrl);
-        this._imageArrayBuffer = imageArrayBuffer;
+        this._imageArrayBuffer = screenshotBuffer;
         this._cdr.detectChanges();
       });
   }

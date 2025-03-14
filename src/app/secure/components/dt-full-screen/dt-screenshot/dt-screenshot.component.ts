@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {DtAction} from '../../../../enums/dt-action.enum';
+import {DtElectronService} from '../../../../services/dt-electron.service';
 
 @Component({
   selector: 'dt-screenshot',
@@ -9,17 +11,17 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 export class DtScreenshotComponent {
   private readonly _SCREENSHOT_AUDIO_PATH: string = 'assets/sound/dt-screenshot-sound.mp3';
 
-  constructor() {
-    window?.electronAPI?.setIgnoreMouseEvents(true);
+  constructor(private _electronService: DtElectronService) {
+    this._electronService.sendMessage({channel: DtAction.SET_IGNORE_MOUSE_EVENTS, payload: {ignoreEvents: true}});
   }
 
   public setIgnoreMouseEvents(ignoreEvents: boolean): void {
-    window?.electronAPI?.setIgnoreMouseEvents(ignoreEvents);
+    this._electronService.sendMessage({channel: DtAction.SET_IGNORE_MOUSE_EVENTS, payload: {ignoreEvents}});
   }
 
   public takeScreenshot(): void {
     const audio = new Audio(this._SCREENSHOT_AUDIO_PATH);
     audio.play();
-    window?.electronAPI?.initTakeScreenshot();
+    this._electronService.sendMessage({channel: DtAction.INIT_TAKE_SCREENSHOT});
   }
 }

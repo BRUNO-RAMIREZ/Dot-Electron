@@ -10,16 +10,3 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
-
-declare global {
-  interface Window {
-    electronAPI: {
-      initTakeScreenshot: () => void;
-      initSeeSomething: () => Promise<ArrayBufferLike>;
-      onRenderScreenshot: (callback: (buffer: ArrayBufferLike) => void) => void;
-      buildBrowserWindowFromRoute: (route: string) => void;
-      setIgnoreMouseEvents: (ignore: boolean) => void;
-      setFullScreen: (isFullScreen: boolean) => void;
-    };
-  }
-}

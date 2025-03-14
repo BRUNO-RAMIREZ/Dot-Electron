@@ -4,8 +4,11 @@ import {DdDocumentAndVersionResponse} from '@doodle/api';
 import {fromEvent, Subject} from 'rxjs';
 import {map, take, takeUntil} from 'rxjs/operators';
 import {SCREENSHOT_NAME} from './constants';
+import {DtAction} from './enums/dt-action.enum';
 import {DtDocumentOpenAction} from './interfaces/dt-document-open-action.interface';
+import {DtElectronMessage} from './interfaces/dt-electron-message.interface';
 import {DtDocumentService} from './services/dt-document.service';
+import {DtElectronService} from './services/dt-electron.service';
 import {DtEventDocumentActionService} from './services/dt-event-document-action.service';
 import {DtLocalLoginTest} from './utilis/dt-local-login-test';
 
@@ -24,6 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _TAKE_ONE: number = 1;
 
   constructor(private _dtEventDocumentActionService: DtEventDocumentActionService,
+              private _dtElectronService: DtElectronService,
               private _dtDocumentService: DtDocumentService,
               private _cdr: ChangeDetectorRef,
               private _injector: Injector,
@@ -44,7 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public closeViewer(): void {
     this.documentDetail = undefined;
-    window?.electronAPI?.setFullScreen(false);
+    this._dtElectronService.sendMessage({channel: DtAction.SET_FULL_SCREEN, payload: {isFullScreen: false}});
     this._router.navigate(['secure/floating-button']);
     this._cdr.detectChanges();
   }
@@ -61,9 +65,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private _listenRenderScreenshot(): void {
-    window?.electronAPI?.onRenderScreenshot((buffer) => {
-      this._saveScreenshotIntoLibrary(buffer);
-      window?.electronAPI?.setFullScreen(true);
+    this._dtElectronService.onMessage(DtAction.LISTEN_TO_SCREENSHOT_TAKEN, (message: DtElectronMessage) => {
+      console.info('DtElectronMessage', message)
+      this._saveScreenshotIntoLibrary(message?.payload.screenshotBuffer);
+      this._dtElectronService.sendMessage({channel: DtAction.SET_FULL_SCREEN, payload: {isFullScreen: true}});
     });
   }
 

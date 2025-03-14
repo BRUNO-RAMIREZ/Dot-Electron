@@ -12,10 +12,13 @@ function buildBrowserWindowFromRoute(mainWindow, route) {
     frame: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false,
+      enableRemoteModule: false
     },
   });
   secondWindow.loadURL(`http://localhost:4200/secure/full-screen/${route}`);
-  secondWindow.webContents.openDevTools();
+  // secondWindow.webContents.openDevTools();
 
   return secondWindow;
 }

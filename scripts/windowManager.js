@@ -76,7 +76,7 @@ async function initTakeScreenShot() {
   const screenshotBuffer = await buildScreenshotBuffer();
   if (!mainWindow) return;
   mainWindow.show();
-  mainWindow.webContents.send('renderScreenshot', screenshotBuffer);
+  mainWindow.webContents.send('LISTEN_TO_SCREENSHOT_TAKEN', {channel: 'LISTEN_TO_SCREENSHOT_TAKEN', payload: {screenshotBuffer}});
 }
 
 async function buildScreenshotBuffer() {

@@ -29,6 +29,7 @@ import {ssModules} from './imports/ss-modules';
 import {DtWallThumbnailModule} from './plugins/dt-wall-thumbnail/dt-wall-thumbnail.module';
 import {SecureModule} from './secure/secure.module';
 import {DtDocumentService} from './services/dt-document.service';
+import {DtElectronService} from './services/dt-electron.service';
 import {DtEventActionService} from './services/dt-event-action.service';
 import {DtEventDocumentActionService} from './services/dt-event-document-action.service';
 import {DtTagConfigService} from './services/dt-tag-config.service';
@@ -65,6 +66,7 @@ DdHttpConfig.getSession().setTenantId(defaultTenant);
     DtEventDocumentActionService,
     DtEventActionService,
     DtCommentsGetDataFacade,
+    DtElectronService,
     {
       provide: WEBSOCKET_PATH,
       useValue: {host: prefixWs, port: ''},

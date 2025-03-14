@@ -1,24 +1,31 @@
-import {Injectable} from '@angular/core';
-import {DtAction} from '../enums/dt-action.enum';
-import {DtPayload} from '../interfaces/dt-payload.interface';
+import {Injectable, NgZone} from '@angular/core';
+import {DtElectronMessage} from '../interfaces/dt-electron-message.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DtElectronService {
+  private _electron: any;
 
-  constructor() {
+  constructor(private _ngZone: NgZone) {
+    this._electron = (window as any).electron;
   }
 
-  public sendMessage(action: DtAction, payload: Partial<DtPayload>): void {
-    if (!((window as any).electron)) return;
-
-    (window as any).electron.sendMessage(action, payload);
+  public sendMessage<T>(message: DtElectronMessage<T>): void {
+    if (!this._electron) return;
+    this._electron.sendMessage(message.channel, message.payload);
   }
 
-  public onMessage(channel: string, callback: (data: any) => void): void {
-    if (!((window as any).electron)) return;
+  public onMessage<T>(channel: string, callback: (message: DtElectronMessage<T>) => void): void {
+    if (!this._electron) return;
+    this._electron.onMessage(channel, (message: DtElectronMessage<T>) => this._ngZone.run(() => callback(message)));
+  }
 
-    (window as any).electron.onMessage(channel, callback);
+  public invoke<T>(message: DtElectronMessage<T>): Promise<T> {
+    if (!this._electron) return Promise.reject('Electron is not available');
+    return this._electron.invoke(message.channel, message?.payload);
+  }
+
+  public removeChannel(channel: string): void {
+    if (!this._electron) return;
+    this._electron.removeListener(channel);
   }
 }

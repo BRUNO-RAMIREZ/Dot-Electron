@@ -11,6 +11,7 @@ import {
 import {Router} from '@angular/router';
 import {DtAction} from '../../../enums/dt-action.enum';
 import {DtElectronService} from '../../../services/dt-electron.service';
+import {buildElectronMessage} from '../../../utilis/dt-electron-messages-builder';
 
 @Component({
   selector: 'dt-floating-button',
@@ -39,21 +40,21 @@ export class DtFloatingButtonComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this._dtElectronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
+    this._dtElectronService.sendMessage(buildElectronMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
       width: 50,
       height: 50,
       y: this._INITIAL_TOP_WINDOW_VALUE
-    });
+    }));
   }
 
   ngAfterViewInit(): void {
     const width: number = this.floatingViewContainer.nativeElement.offsetWidth;
     const height: number = this.floatingViewContainer.nativeElement.offsetHeight;
-    this._dtElectronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
+    this._dtElectronService.sendMessage(buildElectronMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
       width,
       height,
       y: this._INITIAL_TOP_WINDOW_VALUE
-    });
+    }));
   }
 
   public listenDButtonClick(): void {
@@ -83,9 +84,9 @@ export class DtFloatingButtonComponent implements OnInit, AfterViewInit {
   private _updateWindowDimensions(): void {
     const width: number = this.floatingViewContainer.nativeElement.offsetWidth;
     const height: number = this.floatingViewContainer.nativeElement.offsetHeight;
-    this._dtElectronService.sendMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
+    this._dtElectronService.sendMessage(buildElectronMessage(DtAction.CHANGE_WINDOW_BOUNDS, {
       width,
       height,
-    });
+    }));
   }
 }

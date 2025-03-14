@@ -14,28 +14,28 @@ function setupIPCHandlers(mainWindow) {
     setWindowBounds(width, height, y);
   });
 
-  ipcMain.on('setIgnoreMouseEvents', (event, url) => {
-    setIgnoreMouseEvents(event, url);
+  ipcMain.on('SET_IGNORE_MOUSE_EVENTS', (event, payload) => {
+    setIgnoreMouseEvents(event, payload.ignoreEvents);
   });
 
-  ipcMain.on('setFullScreen', (event, isFullScreen) => {
-    !isFullScreen && destroySecondView();
-    setFullScreen(event, isFullScreen);
+  ipcMain.on('SET_FULL_SCREEN', (event, payload) => {
+    !payload.isFullScreen && destroySecondView();
+    setFullScreen(event, payload.isFullScreen);
   });
 
-  ipcMain.on('buildBrowserWindowFromRoute', (event, route) => {
+  ipcMain.on('BUILD_BROWSER_WINDOW', (event, payload) => {
     destroySecondView();
-    buildBrowserWindowFromRoute(mainWindow, route);
+    buildBrowserWindowFromRoute(mainWindow, payload.path);
   });
 
-  ipcMain.on('initTakeScreenshot', async (event) => {
+  ipcMain.on('INIT_TAKE_SCREENSHOT', async () => {
     destroySecondView();
     await initTakeScreenShot();
   });
 
-  ipcMain.handle('initSeeSomething', async () => {
+  ipcMain.handle('INIT_SEE_SOMETHING', async () => {
     const screenshotBuffer = await buildScreenshotBuffer();
-    return screenshotBuffer;
+    return {screenshotBuffer};
   });
 }
 
