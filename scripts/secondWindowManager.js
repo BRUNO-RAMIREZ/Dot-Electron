@@ -15,6 +15,7 @@ function buildBrowserWindowFromRoute(mainWindow, route) {
     },
   });
   secondWindow.loadURL(`http://localhost:4200/secure/full-screen/${route}`);
+  secondWindow.webContents.openDevTools();
 
   return secondWindow;
 }
