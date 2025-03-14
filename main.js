@@ -3,7 +3,6 @@ const { createMainWindow } = require('./scripts/windowManager');
 const { setupIPCHandlers } = require('./scripts/ipcHandlers');
 
 let mainWindow = null;
-let secondWindow = null;
 
 app.whenReady().then(() => {
   mainWindow = createMainWindow();

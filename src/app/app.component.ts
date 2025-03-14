@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {DdDocumentAndVersionResponse} from '@doodle/api';
 import {fromEvent, Subject} from 'rxjs';
@@ -31,7 +31,6 @@ export class AppComponent implements OnInit, OnDestroy {
               private _dtDocumentService: DtDocumentService,
               private _cdr: ChangeDetectorRef,
               private _injector: Injector,
-              private _ngZone: NgZone,
               private _router: Router) {
     this._localLoginTest = new DtLocalLoginTest(this._injector);
     this._localLoginTest.initSession();
@@ -66,7 +65,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private _listenRenderScreenshot(): void {
     this._dtElectronService.onMessage(DtAction.LISTEN_TO_SCREENSHOT_TAKEN, (message: DtElectronMessage) => {
-      console.info('DtElectronMessage', message)
       this._saveScreenshotIntoLibrary(message?.payload.screenshotBuffer);
       this._dtElectronService.sendMessage({channel: DtAction.SET_FULL_SCREEN, payload: {isFullScreen: true}});
     });
@@ -82,10 +80,8 @@ export class AppComponent implements OnInit, OnDestroy {
           versionId: documentData.documentVersion.id
         })))
       .subscribe((documentDetail) => {
-        this._ngZone.run(() => {
-          this.documentDetail = documentDetail;
-          this._cdr.detectChanges();
-        });
+        this.documentDetail = documentDetail;
+        this._cdr.detectChanges();
       });
   }
 
@@ -94,20 +90,14 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribe))
       .subscribe(({document}: DtDocumentOpenAction) => {
         if (!document) return;
-        this._ngZone.run(() => {
-          this.documentDetail = {documentId: document.documentId, versionId: document.versionId};
-          this._cdr.detectChanges();
-        });
+        this.documentDetail = {documentId: document.documentId, versionId: document.versionId};
+        this._cdr.detectChanges();
       });
   }
 
   private _listenEscapeKey(): void {
     fromEvent<KeyboardEvent>(document, 'keydown')
       .pipe(takeUntil(this._unsubscribe))
-      .subscribe((event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
-          this._ngZone.run(() => this.closeViewer());
-        }
-      });
+      .subscribe((event: KeyboardEvent) => event.key === 'Escape' && this.closeViewer());
   }
 }

@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  NgZone,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -49,6 +50,7 @@ export class DtSeeSomethingComponent implements OnInit, OnDestroy {
               private _dtElectronService: DtElectronService,
               private _sanitizer: DomSanitizer,
               private _cdr: ChangeDetectorRef,
+              private _ngZone: NgZone,
               private _router: Router) {
     this.imageSafeUrl = undefined;
     this.isHiddenImage = true;
@@ -85,10 +87,12 @@ export class DtSeeSomethingComponent implements OnInit, OnDestroy {
   private _takeCapture(): void {
     this._dtElectronService.invoke<{ screenshotBuffer: ArrayBuffer }>({channel: DtAction.INIT_SEE_SOMETHING})
       .then(({screenshotBuffer}) => {
-        const imageUrl = URL.createObjectURL(new Blob([screenshotBuffer], {type: 'image/png'}));
-        this.imageSafeUrl = this._sanitizer.bypassSecurityTrustUrl(imageUrl);
-        this._imageArrayBuffer = screenshotBuffer;
-        this._cdr.detectChanges();
+        this._ngZone.run(() => {
+          const imageUrl = URL.createObjectURL(new Blob([screenshotBuffer], {type: 'image/png'}));
+          this.imageSafeUrl = this._sanitizer.bypassSecurityTrustUrl(imageUrl);
+          this._imageArrayBuffer = screenshotBuffer;
+          this._cdr.detectChanges();
+        });
       });
   }
 
