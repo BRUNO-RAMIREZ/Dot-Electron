@@ -15,15 +15,11 @@ import {WallBulletinsContainerFacade, WallNotificationBulletinContainerFacade} f
 import {WEBSOCKET_CONFIG, WEBSOCKET_PATH} from '@set/commons-ws';
 import {ReferenceDocumentsFacade, ReferenceTagsFacade} from '@set/social-tags-core/src';
 import {SetTagsConfig, TagsConfig} from '@set/social-tags-core/src/config';
+import {DtModalViewerComponent} from '../assets/components/dt-modal-viewer/dt-modal-viewer.component';
+import {DtThumbnailWrapperComponent} from '../assets/components/dt-thumbnail-wrapper/dt-thumbnail-wrapper.component';
 import {defaultTenant, prefixWs, securityConfig, tagsConfig, websocketConfig} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {DtCropComponent} from './components/dt-crop/dt-crop.component';
-import {DtFullScreenComponent} from './components/dt-full-screen/dt-full-screen.component';
-import {DtModalViewerComponent} from './components/dt-modal-viewer/dt-modal-viewer.component';
-import {DtScreenshotComponent} from './components/dt-screenshot/dt-screenshot.component';
-import {DtSeeSomethingComponent} from './components/dt-see-something/dt-see-something.component';
-import {DtThumbnailWrapperComponent} from './components/dt-thumbnail-wrapper/dt-thumbnail-wrapper.component';
 import {DtCommentsGetDataFacade} from './facades/dt-comments-get-data.facade';
 import {DtEntityReferenceFacade} from './facades/dt-entity-reference.facade';
 import {doodleModules} from './imports/doodle-modules';
@@ -45,11 +41,7 @@ DdHttpConfig.getSession().setTenantId(defaultTenant);
   declarations: [
     AppComponent,
     DtModalViewerComponent,
-    DtThumbnailWrapperComponent,
-    DtSeeSomethingComponent,
-    DtScreenshotComponent,
-    DtCropComponent,
-    DtFullScreenComponent,
+    DtThumbnailWrapperComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -26,6 +27,7 @@ import {takeUntil} from 'rxjs/operators';
   selector: 'dt-modal-viewer',
   templateUrl: './dt-modal-viewer.component.html',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DtModalViewerComponent implements OnChanges, OnInit, OnDestroy {
   @ViewChild('dotModalContainer') public dotModalContainer!: ElementRef<HTMLDivElement>;

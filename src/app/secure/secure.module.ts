@@ -1,19 +1,27 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DtFloatingButtonComponent } from './components/dt-floating-button/dt-floating-button.component';
-import { DtPanelComponent } from './components/dt-panel/dt-panel.component';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import { DtSideBarComponent } from './components/dt-side-bar/dt-side-bar.component';
-import {wallDotModules} from './imports/wall-dot-module';
 import {WallBulletinsPanelModule} from '@set-social-services/wall';
+import {DtFloatingButtonComponent} from './components/dt-floating-button/dt-floating-button.component';
+import {DtCropComponent} from './components/dt-full-screen/dt-crop/dt-crop.component';
+import {DtFullScreenComponent} from './components/dt-full-screen/dt-full-screen.component';
+import {DtScreenshotComponent} from './components/dt-full-screen/dt-screenshot/dt-screenshot.component';
+import {DtSeeSomethingComponent} from './components/dt-full-screen/dt-see-something/dt-see-something.component';
+import {DtPanelComponent} from './components/dt-panel/dt-panel.component';
+import {DtSideBarComponent} from './components/dt-side-bar/dt-side-bar.component';
 import {DtToolsComponent} from './components/dt-tools/dt-tools.component';
+import {wallDotModules} from './imports/wall-dot-module';
 
 @NgModule({
   declarations: [
     DtFloatingButtonComponent,
     DtPanelComponent,
     DtSideBarComponent,
-    DtToolsComponent
+    DtToolsComponent,
+    DtFullScreenComponent,
+    DtSeeSomethingComponent,
+    DtScreenshotComponent,
+    DtCropComponent
   ],
   imports: [
     ...wallDotModules,
@@ -26,4 +34,5 @@ import {DtToolsComponent} from './components/dt-tools/dt-tools.component';
     DtPanelComponent
   ]
 })
-export class SecureModule { }
+export class SecureModule {
+}

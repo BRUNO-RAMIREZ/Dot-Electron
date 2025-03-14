@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
 import {CROP_NAME, SCREENSHOT_NAME, SECURE_FULL_SCREEN} from '../../../constants';
 
 @Component({
   selector: 'dt-tools',
   templateUrl: './dt-tools.component.html',
-  styleUrls: ['../../../../assets/styles/privates/resources/_dt-tools.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DtToolsComponent {

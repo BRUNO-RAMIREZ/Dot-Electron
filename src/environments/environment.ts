@@ -1,18 +1,18 @@
 import {ViewerViewConfig} from '@doodle/viewer';
 import {SdvCaptionTagConfig} from '@sdv/sdv-components';
 import {SdvConfig} from '@sdv/sdv-core';
+import {CmtMessageWallComponent, CmtNotificationWallComponent} from '@set-social-services/comment';
 import {MovingTicklerDesignEnum} from '@set-social-services/comment-api';
 import {CommentViewConfig, ThumbnailWrapperSdvComponent} from '@set-social-services/comment-view';
 import {SocialTextConfig} from '@set-social-services/social-text';
+import {WallConfig} from '@set-social-services/wall-api';
 import {WebsocketConfig} from '@set/commons-ws';
 import {TagsConfig} from '@set/social-tags-core/src/config';
 import {SocialProfileConfigProperties} from '@set/social-user-profile';
 import {UserTagsConfig} from '@set/user-tag-ng-plugin/lib/config/user-tags.config';
-import {DtThumbnailWrapperComponent} from '../app/components/dt-thumbnail-wrapper/dt-thumbnail-wrapper.component';
-import {DtSpellcheckUtility} from '../app/util/dt-spellcheck.utility';
-import {CmtMessageWallComponent, CmtNotificationWallComponent} from '@set-social-services/comment';
-import {WallConfig} from '@set-social-services/wall-api';
 import {DtCommentsGetDataFacade} from '../app/facades/dt-comments-get-data.facade';
+import {DtSpellcheckUtility} from '../app/util/dt-spellcheck.utility';
+import {DtThumbnailWrapperComponent} from '../assets/components/dt-thumbnail-wrapper/dt-thumbnail-wrapper.component';
 
 export const environment = {
   production: false

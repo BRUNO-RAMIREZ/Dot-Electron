@@ -13,8 +13,8 @@ import {CustomElementModule} from '@set-social-services/common-custom-element';
 import {SsPluginModule} from '@set-social-services/common-plugin';
 import {SdvModule} from '@set-social-services/sdv';
 import {SocialTextModule} from '@set-social-services/social-text';
+import {DtThumbnailWrapperComponent} from '../../assets/components/dt-thumbnail-wrapper/dt-thumbnail-wrapper.component';
 import {commentViewConfig, socialTextConfig} from '../../environments/environment';
-import {DtThumbnailWrapperComponent} from '../components/dt-thumbnail-wrapper/dt-thumbnail-wrapper.component';
 
 
 /**
