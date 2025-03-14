@@ -1,0 +1,7 @@
+/*Linear Gradients*/
+$dt-white-to-blue: linear-gradient(180deg, #EFF2FF 0%, #6396E2 100%);
+
+:root {
+  /*dt-side-bar*/
+  --dot-panel-component: #{$dt-white-to-blue};
+}

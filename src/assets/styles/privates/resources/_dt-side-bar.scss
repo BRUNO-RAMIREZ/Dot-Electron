@@ -1,12 +1,13 @@
 .dt-side-bar-container {
   align-items: center;
-  background-color: #fff6ee;
+  background: var(--dot-panel-component);
+  border-radius: 25px 0 0 25px;
   display: inline-flex;
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
   padding: 0 5px;
-  width: 50px;
+  width: 60px;
 
   .dt-side-bar-panel-top {
     align-items: center;
@@ -24,7 +25,7 @@
       padding-top: 14px;
       width: 100%;
 
-      .dt-wall-btn{
+      .dt-wall-btn {
 
       }
 
@@ -59,14 +60,14 @@
       }
     }
 
-    .dt-side-bar-dynamic-options-container{
+    .dt-side-bar-dynamic-options-container {
       .dt-dynamic-options-container {
         width: 35px;
       }
     }
   }
 
-  .dt-side-bar-bottom-container{
+  .dt-side-bar-bottom-container {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -76,7 +77,7 @@
     position: relative;
     width: 100%;
 
-    .dt-side-bar-avatar-container{
+    .dt-side-bar-avatar-container {
       display: inline-block;
       height: 30px;
       position: relative;

@@ -26,7 +26,6 @@ function setIgnoreMouseEvents(event, ignore) {
 
 function destroySecondView() {
   if (!secondWindow) return;
-  console.info('destroySecondView')
   secondWindow.destroy();
   secondWindow = undefined;
 }

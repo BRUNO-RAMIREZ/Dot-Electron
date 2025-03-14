@@ -10,8 +10,9 @@ function setupIPCHandlers(mainWindow) {
   ipcMain.on(DtAction.CHANGE_WINDOW_BOUNDS, (_, data) => {
     const width = data?.width;
     const height = data?.height;
+    const x = data?.x;
     const y = data?.y;
-    setWindowBounds(width, height, y);
+    setWindowBounds(width, height, x, y);
   });
 
   ipcMain.on('setIgnoreMouseEvents', (event, url) => {

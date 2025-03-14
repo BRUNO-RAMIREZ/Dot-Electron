@@ -22,6 +22,7 @@
     width: 35px;
 
     .dt-panel-control-close-button,
+    .dt-panel-control-full-view-button,
     .dt-panel-control-minimize-expand-button {
       align-items: center;
       border: 0 solid;
@@ -35,27 +36,30 @@
     }
 
     .dt-panel-control-close-button {
+      align-items: center;
       background-color: #ff6767;
-
-      &::before {
-        background-color: #393a6c;
-        border-radius: 50%;
-        content: '';
-        display: inline-flex;
-        min-height: 6px;
-        min-width: 6px;
-      }
+      color: #393a6c;
+      display: flex;
+      font-size: 11px;
+      font-weight: 900;
+      justify-content: center;
+      line-height: 1;
+      padding-bottom: 3px;
+      text-align: center;
     }
 
     .dt-panel-control-minimize-expand-button {
       background-color: #f0cb00;
       color: #393a6c;
-      font-size: 7px;
+      font-size: 10px;
+      font-weight: 900;
+      padding-bottom: 2px;
+    }
 
-      .dt-extension-icon-minimize {
-        font-size: 10px;
-        font-weight: bold;
-      }
+    .dt-panel-control-full-view-button {
+      background-color: #3DA044;
+      color: #393a6c;
+      font-size: 7px;
     }
   }
 
@@ -68,15 +72,33 @@
 
     .dt-panel-content {
       background-color: #f1f6fc;
+      display: flex;
+      flex-direction: row;
       height: 100%;
+      max-width: 100%;
       overflow: hidden;
       position: relative;
       width: 500px;
 
       .wall-injection-dobar {
         height: 100%;
+        max-width: 500px;
+        width: 100%;
+      }
+
+      .dt-panel-full-view-container{
+        display: flex;
+        height: 100%;
         width: 100%;
       }
     }
   }
+}
+
+//TODO: Remove this style
+.wall-bulletins-panel-view-notice-97 {
+  //background-color: rgba(255, 255, 255, 0.01) !important; // 1% de #ffffff
+  //backdrop-filter: blur(25px) !important;
+  //box-shadow: 10px 15px 10px 0px rgba(255, 255, 255, 0.1) inset,
+  //0px -10px 25px 0px rgba(37, 101, 211, 0.25) inset !important;
 }

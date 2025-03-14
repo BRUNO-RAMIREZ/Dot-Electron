@@ -45,23 +45,20 @@ function alignWindowToRightEdge() {
   mainWindow.setBounds({x: newX, y: newY, width, height});
 }
 
-function setWindowBounds(width, height, alignY) {
+function setWindowBounds(width, height, x, y) {
   if (!mainWindow) return;
 
-  const {width: screenWidth, height: screenHeight, x: screenX, y: screenY} = screen.getPrimaryDisplay().workArea;
-  let {y: currentY, width: currentWidth, height: currentHeight} = mainWindow.getBounds();
+  const { width: screenWidth, height: screenHeight, x: screenX, y: screenY } = screen.getPrimaryDisplay().workArea;
+  let { x: currentX, y: currentY, width: currentWidth, height: currentHeight } = mainWindow.getBounds();
 
-  width = width < 0 ? screenWidth : width ?? currentWidth;
-  height = height < 0 ? screenHeight : height ?? currentHeight;
+  width = width < 0 ? screenWidth : (width ?? currentWidth);
+  height = height < 0 ? screenHeight : (height ?? currentHeight);
 
-  const newX = screenX + screenWidth - width;
+  const newX = x !== undefined ? (x < 0 ? screenX + screenWidth - width : x) : currentX;
 
-  const newY =
-    alignY !== undefined ?
-      alignY
-      : Math.max(Math.min(currentY, screenY + screenHeight - height), screenY);
+  const newY = y !== undefined ? (y < 0 ? screenY + screenHeight - height : y) : currentY;
 
-  mainWindow.setBounds({x: newX, y: newY, width, height});
+  mainWindow.setBounds({ x: newX, y: newY, width, height });
 }
 
 function setFullScreen(event, isFullScreen) {

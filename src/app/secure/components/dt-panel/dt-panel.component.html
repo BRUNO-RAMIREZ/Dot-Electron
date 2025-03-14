@@ -4,11 +4,17 @@
   <section class="dt-panel-control-buttons">
     <button class="dt-panel-control-close-button"
             (click)="closeComponent()">
+      x
     </button>
 
     <button class="dt-btn dt-panel-control-minimize-expand-button"
             (click)="toggleMinimize()">
-      <span [ngClass]="isMinimized ? 'dt-extension-icon-minimize' : 'dt-extension-icon-expand'"></span>
+      ━
+    </button>
+
+    <button class="dt-btn dt-panel-control-full-view-button"
+            (click)="toggleFullView()">
+      <span class="dt-extension-icon-expand"></span>
     </button>
   </section>
 
@@ -17,16 +23,22 @@
     </dt-side-bar>
 
     <div class="dt-panel-content"
-         #panelView>
+         #panelContent>
       <!--      <router-outlet></router-outlet>-->
-        <article class="wall-injection-dobar wall-default-theme comment-default-theme micro-app-default-theme">
-          <wall-bulletins-panel [wallFeatures]="wallFeatures">
-          </wall-bulletins-panel>
+      <div class="wall-injection-dobar wall-default-theme comment-default-theme micro-app-default-theme"
+               *ngIf="!isMinimized">
+        <wall-bulletins-panel [wallFeatures]="wallFeatures">
+        </wall-bulletins-panel>
 
-          <div contenteditable="false"
-               socialText="true">
-          </div>
-        </article>
+        <div contenteditable="false"
+             socialText="true">
+        </div>
+      </div>
+
+      <div class="dt-panel-full-view-container"
+               *ngIf="isInFullView">
+
+      </div>
     </div>
   </section>
 </article>
