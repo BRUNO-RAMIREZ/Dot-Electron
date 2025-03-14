@@ -5,7 +5,7 @@ import {CROP_NAME, SCREENSHOT_NAME, SECURE_FULL_SCREEN} from '../../../constants
 @Component({
   selector: 'dt-tools',
   templateUrl: './dt-tools.component.html',
-  styleUrls: ['./dt-tools.component.scss'],
+  styleUrls: ['../../../../assets/styles/privates/resources/_dt-tools.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DtToolsComponent {

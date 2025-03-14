@@ -87,9 +87,14 @@ async function buildScreenshotBuffer() {
 async function takeScreenshot() {
   const primaryDisplay = screen.getPrimaryDisplay();
   const {width, height} = primaryDisplay.size;
+  const scaleFactor = primaryDisplay.scaleFactor;
+
   const optionsForCapture = {
     types: ['screen'],
-    thumbnailSize: {width, height}
+    thumbnailSize: {
+      width: width * scaleFactor,
+      height: height * scaleFactor
+    }
   };
   const sources = await desktopCapturer.getSources(optionsForCapture);
 

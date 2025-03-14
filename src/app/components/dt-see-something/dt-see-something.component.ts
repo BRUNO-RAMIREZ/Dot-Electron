@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {DoodleDrawMode} from '@doodle/annotations';
@@ -17,7 +17,7 @@ import {DtEventDocumentActionService} from '../../services/dt-event-document-act
 @Component({
   selector: 'dt-see-something',
   templateUrl: './dt-see-something.component.html',
-  styleUrls: ['./dt-see-something.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [DdBoardService, DtAnnotationsService, DtCommentsService]
 })
 export class DtSeeSomethingComponent implements OnInit, OnDestroy {

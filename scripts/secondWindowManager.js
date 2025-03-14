@@ -1,4 +1,4 @@
-const {BrowserWindow, screen} = require('electron');
+const {BrowserWindow} = require('electron');
 const path = require('path');
 
 let secondWindow = null;
@@ -21,13 +21,11 @@ function buildBrowserWindowFromRoute(mainWindow, route) {
 }
 
 function setIgnoreMouseEvents(event, ignore) {
-  console.log(ignore, secondWindow)
   secondWindow && secondWindow.setIgnoreMouseEvents(ignore, {forward: true});
 }
 
 function destroySecondView() {
   if (!secondWindow) return;
-  console.info('destroySecondView')
   secondWindow.destroy();
   secondWindow = undefined;
 }

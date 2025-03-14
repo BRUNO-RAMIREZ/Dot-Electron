@@ -10,7 +10,8 @@ import {
   Output,
   Renderer2,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import {DdViewerConfig, DdViewerConfiguration} from '@doodle/core';
 import {DdDotActions, DdDotViewerActionsFacade} from '@doodle/viewer';
@@ -24,7 +25,7 @@ import {takeUntil} from 'rxjs/operators';
 @Component({
   selector: 'dt-modal-viewer',
   templateUrl: './dt-modal-viewer.component.html',
-  styleUrls: ['./dt-modal-viewer.component.scss']
+  encapsulation: ViewEncapsulation.None,
 })
 export class DtModalViewerComponent implements OnChanges, OnInit, OnDestroy {
   @ViewChild('dotModalContainer') public dotModalContainer!: ElementRef<HTMLDivElement>;

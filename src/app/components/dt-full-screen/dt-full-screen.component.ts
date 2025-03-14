@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-dt-full-screen',
   templateUrl: './dt-full-screen.component.html',
-  styleUrls: ['./dt-full-screen.component.scss']
+  encapsulation: ViewEncapsulation.None,
 })
-export class DtFullScreenComponent   {
-
-  constructor() { }
-
+export class DtFullScreenComponent {
 }
